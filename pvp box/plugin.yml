@@ -1,0 +1,17 @@
+name: PvpBox
+version: 0.1
+author: Midey
+main: fr.midey.pvpbox.PvpBox
+commands:
+  kit:
+    description: affiche les kits disponibles
+    permission: kit.use
+  set:
+    description: set les points de changement de kit
+    permission: set.use
+  feed:
+    description: feed me
+    permission: feed.use
+  Health:
+    description: passe player a n coeurs
+    permission: Health.use

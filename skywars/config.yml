@@ -1,0 +1,103 @@
+skywars:
+  timer:
+    refileChest: 30
+    deathmatch: 600
+    beforestart: 3
+    nbjoueurminstart: 2
+    nbjoueurmaxstart: 20
+  location:
+    hub:
+      x: 0
+      y: 0
+      z: 0
+      yaw: 88.5
+      peach: 22.5
+    player1:
+      x: 9
+      y: 32
+      z: 6
+    player2:
+      x: 6
+      y: 32
+      z: 9
+    player3:
+      x: 10
+      y: 10
+      z: 10
+    player4:
+      x: 10
+      y: 10
+      z: 10
+    player5:
+      x: 10
+      y: 10
+      z: 10
+    player6:
+      x: 10
+      y: 10
+      z: 10
+    player7:
+      x: 10
+      y: 10
+      z: 10
+    player8:
+      x: 10
+      y: 10
+      z: 10
+    player9:
+      x: 10
+      y: 10
+      z: 10
+    player10:
+      x: 10
+      y: 10
+      z: 10
+    player11:
+      x: 10
+      y: 10
+      z: 10
+    player12:
+      x: 10
+      y: 10
+      z: 10
+    player13:
+      x: 10
+      y: 10
+      z: 10
+    player14:
+      x: 10
+      y: 10
+      z: 10
+    player15:
+      x: 10
+      y: 10
+      z: 10
+    player16:
+      x: 10
+      y: 10
+      z: 10
+    player17:
+      x: 10
+      y: 10
+      z: 10
+    player18:
+      x: 10
+      y: 10
+      z: 10
+    player19:
+      x: 10
+      y: 10
+      z: 10
+    player20:
+      x: 10
+      y: 10
+      z: 10
+LootItems:
+  0:
+    material: IRON_SWORD
+    name: "&4Épée d'Hadès"
+    enchantments:
+      FIRE_ASPECT: 1
+    chance: 0.1
+    minAmount: 1
+    maxAmount: 1

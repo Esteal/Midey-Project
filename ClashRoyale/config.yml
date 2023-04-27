@@ -1,0 +1,18 @@
+spawnlobby:
+  x: -7.427
+  y: 158
+  z: 16.928
+  pe: 0.0
+  ya: 180.0
+bleuspawn:
+  x: 27
+  y: 156
+  z: -6.5
+  pe: 8.2
+  ya: 90.2
+rougespawn:
+  x: -42.5
+  y: 156
+  z: -6.5
+  pe: 6.2
+  ya: -89.9

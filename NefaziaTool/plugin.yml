@@ -1,0 +1,17 @@
+name: Nefazia
+version: 1.0
+author: Midey
+main: fr.midey.nefaziatool.Main
+commands:
+  dynamite:
+    description: dynamite
+    permission: dynamite.use
+  chestviewer:
+    description: chestviewer
+    permission: chestviewer.use
+  transformatrice:
+    description: remplace le casque de ton enemi
+    permission: hoereplace.use
+  batisseuse:
+    description: pose une colonne de Material
+    permission: batisseuse.use

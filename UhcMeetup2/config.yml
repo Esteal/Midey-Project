@@ -1,0 +1,4 @@
+timerbeforestart:  60
+playerbeforestart: 1
+timerbeforeborder: 600
+timerbeforecloseserver: 30

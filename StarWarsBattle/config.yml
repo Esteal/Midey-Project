@@ -1,0 +1,36 @@
+spawnlobby:
+  x: -1334
+  y: 255
+  z: 167
+jedispawn:
+  x: -1234
+  y: 122
+  z: 161
+  pe: 179.9
+  ya: 23.9
+empirespawn:
+  x: -1319.5
+  y: 112.1
+  z: 71.5
+  pe: -0.4
+  ya: 21.5
+cost:
+  jetpack: 15
+  pousse: 30
+  jump: 15
+  bombe: 30
+  brevage: 40
+  eclairs: 30
+  attraction: 40
+cooldown:
+  pousse: 15
+  jump: 2
+  bombe: 10
+  brevage: 15
+  eclairs: 20
+  blaster: 1
+  attraction: 20
+damage:
+  blaster: 3
+opPlayer:
+  Midey1901: 0

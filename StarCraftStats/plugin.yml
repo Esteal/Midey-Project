@@ -1,0 +1,14 @@
+name: StarCraftStats
+version: 1.0
+main: fr.midey.starcraft.Stats
+author: Midey
+commands:
+  set:
+    description: modifie les stats d'un joueur
+    permission: set.use
+  stats:
+    description: affiche les stats et grades du joueur
+    permission: stats.use
+  wand:
+    description: donne un wand au joueur
+    permission: wand.uses

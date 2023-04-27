@@ -1,0 +1,26 @@
+name: ThePlugin
+version: 1.0
+author: Midey
+main: fr.midey.monplugin.MonPlugin
+commands:
+  test:
+    description: Ceci est une commande de test
+    permission: test.use
+  alert:
+    description : Broadcast
+    permission: bc.use
+  kit:
+    description : kit patate
+    permission: kit.use
+  bidule:
+    description : kit bidule
+    permission: bidule.use
+  weekly:
+    description : kit wekly
+    permission: weekly.use
+  mlg:
+    description: donne un seau d'eau
+    permission: mlg.use
+  sword:
+    description : epee de test
+    permission: sword.use

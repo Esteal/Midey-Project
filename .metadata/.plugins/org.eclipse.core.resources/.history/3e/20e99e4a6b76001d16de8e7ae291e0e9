@@ -1,0 +1,103 @@
+package fr.midey.pvpbox.interaction;
+
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
+import fr.midey.pvpbox.commands.Commands;
+import fr.midey.pvpbox.stuff.Stuff;
+public class Interaction implements Listener {
+	
+	@EventHandler
+	public void onInteract(PlayerInteractEvent event){
+		Player player = event.getPlayer();
+		Location loc = player.getLocation();
+		Action action = event.getAction();
+		ItemStack it = event.getItem();
+		if(loc.getBlockX() == Commands.archers.getBlockX() && loc.getBlockZ() == Commands.archers.getBlockZ()){
+			player.teleport(Commands.arene);
+			Stuff.archer(player);
+			player.sendMessage("Vous venez d'être téléporté avec le kit archer");
+			return;
+		}
+		if(loc.getBlockX() == Commands.berserkers.getBlockX() && loc.getBlockZ() == Commands.berserkers.getBlockZ()){
+			player.teleport(Commands.arene);
+			Stuff.berserker(player);
+			player.sendMessage("Vous venez d'être téléporté avec le kit berserker");
+			return;
+		}
+		if(loc.getBlockX() == Commands.monks.getBlockX() && loc.getBlockZ() == Commands.monks.getBlockZ()){
+			player.teleport(Commands.arene);
+			Stuff.monk(player);
+			player.sendMessage("Vous venez d'être téléporté avec le kit archer");
+			return;
+		}
+		
+		if(it == null) return;
+		
+		if(it.getType() == Material.SUGAR && it.hasItemMeta() && it.getItemMeta().hasDisplayName() && it.getItemMeta().getDisplayName().equalsIgnoreCase("§9Sniffff moi ça mon rheuf")) {
+			if(action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
+				for (PotionEffect effect : player.getActivePotionEffects()) {
+					effect.getType();
+					player.removePotionEffect(PotionEffectType.SPEED);
+				}
+				player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * 15, 3));
+				it.setAmount(it.getAmount() -1);
+				player.getInventory().setItemInHand(it);
+				player.setHealth(20.0);
+				return ;
+			}
+		}
+		
+		if(it.getType() == Material.BLAZE_POWDER && it.hasItemMeta() && it.getItemMeta().hasDisplayName() && it.getItemMeta().getDisplayName().equalsIgnoreCase("§2C'est d'la bonne mec !")) {
+			if(action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
+				if(player.getHealth() <= 5.0) {
+					for (PotionEffect effect : player.getActivePotionEffects()) {
+						effect.getType();
+						player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
+					}
+					player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 15, 3));
+					Stuff.berserker2(player);
+					return ;
+				}
+			}
+			return;
+		}
+		
+		if(it.getType() == Material.IRON_INGOT && it.hasItemMeta() && it.getItemMeta().hasDisplayName() && it.getItemMeta().getDisplayName().equalsIgnoreCase("§1Deviens un racailloux !!!!")) {
+			if(action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
+				for (PotionEffect effect : player.getActivePotionEffects()) {
+					effect.getType();
+					player.removePotionEffect(PotionEffectType.SPEED);
+					player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
+					player.removePotionEffect(PotionEffectType.REGENERATION);
+				}
+				player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20 * 900000, 0));
+				player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20 * 900000, 0));
+				player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20*900000, 0));
+				player.getInventory().setItemInHand(Stuff.EnchantedFeed(new ItemStack(Material.BLAZE_ROD), "§1Pikacheat"));
+				return ;
+			}
+		}
+		if(it.getType() == Material.BLAZE_ROD && it.hasItemMeta() && it.getItemMeta().hasDisplayName() && it.getItemMeta().getDisplayName().equalsIgnoreCase("§1Pikacheat")) {
+			if(action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
+				for (PotionEffect effect : player.getActivePotionEffects()) {
+					effect.getType();
+					player.removePotionEffect(PotionEffectType.SPEED);
+					player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
+					player.removePotionEffect(PotionEffectType.REGENERATION);
+				}
+				player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * 900000, 0));
+				player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20*7, 10));
+				player.getInventory().setItemInHand(Stuff.EnchantedFeed(new ItemStack(Material.IRON_INGOT), "§1Deviens un racailloux !!!!"));
+			}
+		}
+	}
+}

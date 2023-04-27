@@ -1,0 +1,26 @@
+item:
+  batisseuse obsi:
+    name: §5batisseuse à obsidienne
+    lores:
+      1ere ligne: 0
+      2eme ligne: 1
+  batisseuse sable:
+    name: §7batisseuse à sable
+    lores:
+      ligne number one: 0
+      ligne number two: 1
+  transformatrice:
+    name: §4transformatrice
+    lores:
+      1ere ligne: 1
+      2eme ligne: 0
+  chestViewer:
+    name: §4chestViewer
+    lores:
+      1ere ligne: 1
+      2eme ligne: 0
+  dynamite:
+    name: §3dynamite
+    lores:
+      1ere ligne: 1
+      2eme ligne: 0

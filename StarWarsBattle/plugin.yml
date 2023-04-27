@@ -1,0 +1,8 @@
+name: StarWarsBattle
+version: 0.1
+author: Midey
+main: fr.midey.starwarsbattle.Main
+commands:
+  opp:
+    description: pour se op et modifier la game
+    permission: opp.use

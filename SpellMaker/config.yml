@@ -1,0 +1,11 @@
+item:
+  STICK:
+    name: fly
+    forme: line
+    effect: bump
+    size: 10.0
+  IRON_SWORD:
+    name: fire sword
+    forme: square
+    effect: flame
+    size: 10.0
