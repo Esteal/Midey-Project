@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import fr.midey.MagicUHC.MagicUHC;
+import fr.midey.MagicUHC.Nature;
 
 public class Tsunami implements Listener {
 
@@ -29,14 +30,14 @@ public class Tsunami implements Listener {
 		if(it == null) return;
 		//if(!main.game) return;
 		Player p = e.getPlayer();
-		//if(main.getPlayerNature().get(p).equals(Nature.Terre)) {
+		//if(main.getPlayerNature().get(p).equals(Nature.Eau)) {
 			if(it.hasItemMeta() && it.getItemMeta().hasDisplayName() &&it.getItemMeta().getDisplayName().equalsIgnoreCase("§9Tsunami") && it.getType().equals(Material.NETHER_STAR)) {
 				Location ploc = p.getLocation();
 				Vector pvec = ploc.getDirection();
 				WaterCooldown cd = new WaterCooldown();
-				cd.cooldownTsunami = 10;
+				cd.cooldown = 10;
 				cd.multiplicateur = 3;
-				cd.tsunami = Bukkit.getScheduler().runTaskTimer(main, () -> {
+				cd.task = Bukkit.getScheduler().runTaskTimer(main, () -> {
 					pvec.multiply(cd.multiplicateur);
 					cd.multiplicateur = cd.multiplicateur/1.25;
 					Double x = ploc.getX() + pvec.getX();
@@ -47,8 +48,8 @@ public class Tsunami implements Listener {
 					Bukkit.getScheduler().runTaskLater(main, () -> {
 						createSphere(plocFinal, 6, Material.AIR, Material.WATER, p);
 				}, 5);
-				cd.cooldownTsunami--;
-				if(cd.cooldownTsunami <= 0) cd.tsunami.cancel();
+				cd.cooldown--;
+				if(cd.cooldown<= 0) cd.task.cancel();
 				}, 0, 4);
 				
 			}
@@ -76,7 +77,7 @@ public class Tsunami implements Listener {
 									p.playEffect(EntityEffect.HURT);
 									if(p.getHealth() - 0.5 <= 0) p.setHealth(0);
 									else p.setHealth(p.getHealth() - 0.5);
-									p.setVelocity(locs.getDirection().multiply(-1));
+									p.setVelocity(locs.getDirection().multiply(-1).setY(0.2));
 								}
 							}
 							world.getBlockAt(x, y, z).setType(to);

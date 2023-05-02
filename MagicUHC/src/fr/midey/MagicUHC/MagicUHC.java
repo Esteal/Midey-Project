@@ -8,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import fr.midey.MagicUHC.Magie.MagicSelection;
+import fr.midey.MagicUHC.Magie.Eau.Geyser;
 import fr.midey.MagicUHC.Magie.Eau.Tsunami;
 import fr.midey.MagicUHC.Magie.Terre.Faille;
 import fr.midey.MagicUHC.Magie.Terre.Piliers;
@@ -33,6 +34,7 @@ public class MagicUHC extends JavaPlugin {
 		
 		//Sorts d'eau
 		pm.registerEvents(new Tsunami(this), this);
+		pm.registerEvents(new Geyser(this), this);
 		
 		taskID = Bukkit.getScheduler().runTaskTimer(this, () -> {
 			if(Gmain.isState(GState.PLAYING)) {

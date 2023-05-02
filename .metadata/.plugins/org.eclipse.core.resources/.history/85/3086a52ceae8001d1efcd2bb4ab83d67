@@ -1,0 +1,14 @@
+package fr.midey.MagicUHC.Magie.Eau;
+
+import org.bukkit.event.Listener;
+
+import fr.midey.MagicUHC.MagicUHC;
+
+public class Geyser implements Listener {
+
+	private MagicUHC main;
+	
+	public Geyser(MagicUHC main) {
+		this.main = main;
+	}
+}
