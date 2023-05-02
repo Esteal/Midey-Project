@@ -31,7 +31,6 @@ public class Piliers implements Listener {
 		Player p = e.getPlayer();
 		if(main.getPlayerNature().get(p).equals(Nature.Terre)) {
 			if(it.hasItemMeta() && it.getItemMeta().hasDisplayName() &&it.getItemMeta().getDisplayName().equalsIgnoreCase("§6Pilier de pierre") && it.getType().equals(Material.NETHER_STAR)) {
-				p.sendMessage("good");
 				Location loc = p.getLocation();
 				Vector v = loc.getDirection();
 				v.multiply(8);
@@ -46,7 +45,6 @@ public class Piliers implements Listener {
 				for(Player ps : Bukkit.getOnlinePlayers()) {
 					if(isPlayerNearPillar(ps, loc, 3)) {
 						ps.setVelocity(newVec);
-						ps.sendMessage("Pillar");
 					}
 				}
 				generatePillar(loc, 9, mat);

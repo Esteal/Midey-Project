@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy>
-    <typeInfo handle="=Mon plugin/C:\/Users\/esteb\/Desktop\/serveur local\/spigot.jar=/module=/true=/&lt;org.bukkit.entity(Arrow$Spigot.class[Spigot" modifiers="9" timestamp="1636548126202"/>
-    <typeInfo handle="=Mon plugin/C:\/Users\/esteb\/Desktop\/serveur local\/spigot.jar=/module=/true=/&lt;org.bukkit.plugin.java(JavaPlugin.class[JavaPlugin" modifiers="1057" timestamp="1636548126202"/>
-    <typeInfo handle="=pvp box/C:\/Users\/esteb\/Desktop\/serveur local\/spigot.jar&lt;org.bukkit.scheduler(BukkitRunnable.class[BukkitRunnable" modifiers="1057" timestamp="1636548126202"/>
-</typeInfoHistroy>
+<typeInfoHistroy/>

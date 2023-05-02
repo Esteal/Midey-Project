@@ -2,7 +2,7 @@
 <section name="Workbench">
 	<item key="org.eclipse.jdt.ui.last.selected.jre.kind2" value="2"/>
 	<item key="org.eclipse.jdt.ui.last.selected.execution.enviroment" value="JavaSE-1.8"/>
-	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\esteb\Desktop\serveur local  (uhc meetup2)\plugins"/>
+	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Dev\Minecraft\Spigot"/>
 	<item key="TypeHierarchyViewPart.hierarchyview" value="2"/>
 	<item key="TypeHierarchyViewPart.qualifiednames" value="false"/>
 	<item key="TypeHierarchyViewPart.linkeditors" value="false"/>
@@ -71,6 +71,8 @@
 		<item key="JarManifestWizardPage.MANIFEST_LOCATION" value=""/>
 		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\esteb\OneDrive\Bureau\Uhc meetup\plugins\UHC magic.jar"/>
+			<item value="C:\Users\esteb\OneDrive\Bureau\Uhc meetup\plugins\UHC meetup.jar"/>
 			<item value="C:\Users\esteb\Desktop\serveur local  (uhc meetup2)\plugins\MagicUHC.jar"/>
 			<item value="C:\Users\esteb\Desktop\serveur local  (uhc meetup2)\plugins\Plugin UHC Meetup.jar"/>
 			<item value="C:\Users\esteb\Desktop\Plugin UHC Meetup.jar"/>
@@ -89,8 +91,6 @@
 			<item value="C:\Users\esteb\Desktop\serveur local  (uhc meetup)\plugins\UhcMeetup.jar"/>
 			<item value="C:\Users\esteb\Desktop\serveur local (skywars)\plugins\skywars.jar"/>
 			<item value="C:\Users\esteb\Desktop\serveur local (flat map)\plugins\PvpBox.jar"/>
-			<item value="C:\Users\esteb\Desktop\devellopement\eclipse\workspace\LeDébut\src\fr\midey\ledébut\MonPlugin.jar"/>
-			<item value="C:\Users\esteb\Desktop\serveur local\plugins\MonPlugin.jar"/>
 		</list>
 	</section>
 	<section name="JavaSearchPage">

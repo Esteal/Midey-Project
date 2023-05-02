@@ -1,0 +1,9 @@
+package fr.midey.MagicUHC.Magie.Eau;
+
+import org.bukkit.scheduler.BukkitTask;
+
+public class WaterCooldown {
+	public int cooldownTsunami;
+	public int multiplicateur;
+	public BukkitTask tsunami;
+}

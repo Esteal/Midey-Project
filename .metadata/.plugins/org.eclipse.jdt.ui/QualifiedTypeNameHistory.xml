@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.text.DecimalFormat"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.bukkit.entity.Player"/>
     <fullyQualifiedTypeName name="fr.midey.starcraft.Spell.SelectClickSpell"/>
@@ -19,7 +18,6 @@
     <fullyQualifiedTypeName name="org.bukkit.event.player.PlayerRespawnEvent"/>
     <fullyQualifiedTypeName name="fr.midey.starcraft.playerManager.onRespawnPlayer"/>
     <fullyQualifiedTypeName name="fr.midey.starcraft.Spell.SabreDeForce"/>
-    <fullyQualifiedTypeName name="org.bukkit.EntityEffect"/>
     <fullyQualifiedTypeName name="fr.midey.starcraft.itemsPackage.beskar.BeskarHelmet"/>
     <fullyQualifiedTypeName name="fr.midey.starcraft.itemsPackage.beskar.BeskarLib"/>
     <fullyQualifiedTypeName name="fr.midey.starcraft.itemsPackage.LightSaber"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="org.bukkit.World"/>
     <fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
     <fullyQualifiedTypeName name="org.bukkit.Bukkit"/>
+    <fullyQualifiedTypeName name="fr.midey.MagicUHC.Magie.Eau.WaterCooldown"/>
+    <fullyQualifiedTypeName name="org.bukkit.EntityEffect"/>
 </qualifiedTypeNameHistroy>
