@@ -46,18 +46,18 @@
     <fullyQualifiedTypeName name="org.apache.logging.log4j.core.jmx.Server"/>
     <fullyQualifiedTypeName name="org.bukkit.plugin.PluginManager"/>
     <fullyQualifiedTypeName name="org.bukkit.inventory.ItemStack"/>
-    <fullyQualifiedTypeName name="fr.midey.MagicUHC.Nature"/>
     <fullyQualifiedTypeName name="org.bukkit.Material"/>
-    <fullyQualifiedTypeName name="fr.midey.MagicUHC.MagicUHC"/>
     <fullyQualifiedTypeName name="org.bukkit.Sound"/>
     <fullyQualifiedTypeName name="org.bukkit.entity.Entity"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
     <fullyQualifiedTypeName name="net.minecraft.server.v1_8_R3.EnumParticle"/>
-    <fullyQualifiedTypeName name="org.bukkit.Location"/>
     <fullyQualifiedTypeName name="org.bukkit.block.Block"/>
     <fullyQualifiedTypeName name="org.bukkit.World"/>
-    <fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
-    <fullyQualifiedTypeName name="org.bukkit.Bukkit"/>
-    <fullyQualifiedTypeName name="fr.midey.MagicUHC.Magie.Eau.WaterCooldown"/>
     <fullyQualifiedTypeName name="org.bukkit.EntityEffect"/>
+    <fullyQualifiedTypeName name="fr.midey.MagicUHC.MagicUHC"/>
+    <fullyQualifiedTypeName name="fr.midey.MagicUHC.Nature"/>
+    <fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
+    <fullyQualifiedTypeName name="fr.midey.MagicUHC.Magie.Eau.WaterCooldown"/>
+    <fullyQualifiedTypeName name="org.bukkit.Bukkit"/>
+    <fullyQualifiedTypeName name="org.bukkit.Location"/>
 </qualifiedTypeNameHistroy>

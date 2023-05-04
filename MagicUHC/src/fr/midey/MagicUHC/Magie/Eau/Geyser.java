@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -36,7 +37,6 @@ public class Geyser implements Listener {
 				Location newLoc = new Location(world, v.getX() + ploc.getBlockX(), v.getY() + ploc.getBlockY(), v.getZ() + ploc.getBlockZ());
 				WaterCooldown cd = new WaterCooldown();
 				cd.cooldown = 10;
-				p.sendMessage("y : " + newLoc.getBlockY());
 				while(newLoc.getBlock().getType() == Material.AIR) {
 					newLoc.setY(newLoc.getBlockY() - 1);
 				}
@@ -47,16 +47,38 @@ public class Geyser implements Listener {
 					p.sendMessage("y : " + newLoc.getBlockY());
 					newLoc.setY(newLoc.getBlockY() + 1);
 					cd.cooldown--;
-					if(cd.cooldown <= 0) cd.task.cancel();
-				}, 0, 5);
-				Bukkit.getScheduler().runTaskLater(main, () -> {
-					for(int i = 100; i>0; i++) {
-						if(newLoc.getBlock().getType() == Material.WATER) {
-							world.getBlockAt(newLoc).setType(Material.AIR);	
+					Bukkit.getScheduler().runTaskLater(main, () -> {
+						Block block = world.getBlockAt(newLoc);
+						int x = block.getLocation().getBlockX();
+						int z = block.getLocation().getBlockZ();
+						int y = block.getLocation().getBlockY();
+						Location locBlock = new Location(world, x, y - 3, z);
+						Block blockFinal = world.getBlockAt(locBlock);
+						if(blockFinal.getType() == Material.WATER || blockFinal.getType() == Material.STATIONARY_WATER) {
+							blockFinal.setType(Material.AIR);
 						}
-						newLoc.setY(newLoc.getBlockY()-1);
+					}, 3);
+					if(cd.cooldown <= 3) {
+						Bukkit.getScheduler().runTaskLater(main, () -> {
+							Block block = world.getBlockAt(newLoc);
+							int x = block.getLocation().getBlockX();
+							int z = block.getLocation().getBlockZ();
+							int y = block.getLocation().getBlockY();
+							Location locBlock = new Location(world, x, y - cd.cooldown - 1, z);
+							Block blockFinal = world.getBlockAt(locBlock);
+							if(blockFinal.getType() == Material.WATER || blockFinal.getType() == Material.STATIONARY_WATER) {
+								blockFinal.setType(Material.AIR);
+								p.sendMessage("caca");
+							}
+						}, 3);
 					}
-				}, 100);
+					if(cd.cooldown <= 0) cd.task.cancel();
+				}, 0, 0);
+				Bukkit.getScheduler().runTaskLater(main, () -> {
+					if(newLoc.getBlock().getType() == Material.WATER) {
+						world.getBlockAt(newLoc).setType(Material.AIR);
+					}
+				}, 15);
 			//}
 		}
 	}
