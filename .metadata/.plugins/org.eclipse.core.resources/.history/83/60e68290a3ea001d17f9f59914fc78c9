@@ -1,0 +1,28 @@
+package fr.midey.MagicUHC.Magie.Eau;
+
+import org.bukkit.Bukkit;
+import org.bukkit.EntityEffect;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitTask;
+
+public class WaterCooldown {
+	public int cooldown;
+	public double multiplicateur;
+	public BukkitTask task;
+	
+	public void VerifyPropulsePlayer(int x, int y, int z, double propulseur, Player originalPlayer) {
+		for(Player p : Bukkit.getOnlinePlayers()) {
+			Location locs = p.getLocation();
+			if(p == originalPlayer) continue;
+			if(locs.getBlockX() == x
+				&& locs.getBlockY() == y
+				&& locs.getBlockZ() == z) {
+				p.playEffect(EntityEffect.HURT);
+				if(p.getHealth() - 0.5 <= 0) p.setHealth(0);
+				else p.setHealth(p.getHealth() - 0.5);
+				p.setVelocity(locs.getDirection().setY(propulseur));
+			}
+		}
+	}
+}

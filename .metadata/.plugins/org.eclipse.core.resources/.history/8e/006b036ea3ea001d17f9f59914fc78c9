@@ -1,0 +1,14 @@
+package fr.midey.MagicUHC.Magie.Eau;
+
+import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitTask;
+
+public class WaterCooldown {
+	public int cooldown;
+	public double multiplicateur;
+	public BukkitTask task;
+	
+	public void VerifyPropulsePlayer(int x, int y, int z, double propulseur, Player originalPlayer) {
+		
+	}
+}

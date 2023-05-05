@@ -36,17 +36,21 @@ public class Geyser implements Listener {
 				v.multiply(8);
 				Location newLoc = new Location(world, v.getX() + ploc.getBlockX(), v.getY() + ploc.getBlockY(), v.getZ() + ploc.getBlockZ());
 				WaterCooldown cd = new WaterCooldown();
-				cd.cooldown = 10;
+				cd.cooldown = 15;
 				while(newLoc.getBlock().getType() == Material.AIR) {
 					newLoc.setY(newLoc.getBlockY() - 1);
 				}
 				cd.task = Bukkit.getScheduler().runTaskTimer(main, () -> {
-					if(newLoc.getBlock().getType() == Material.AIR) {
-						world.getBlockAt(newLoc).setType(Material.WATER);
-					}
-					p.sendMessage("y : " + newLoc.getBlockY());
+
 					newLoc.setY(newLoc.getBlockY() + 1);
 					cd.cooldown--;
+					if(newLoc.getBlock().getType() == Material.AIR) {
+						if(cd.cooldown > 4) {
+							world.getBlockAt(newLoc).setType(Material.WATER);
+							cd.VerifyPropulsePlayer(newLoc.getBlockX(), newLoc.getBlockY(), newLoc.getBlockZ(), 1, 0.5, p, false, 0);
+						} else cd.VerifyPropulsePlayer(newLoc.getBlockX(), newLoc.getBlockY(), newLoc.getBlockZ(), 2, 0.5, p, false, 0);
+						
+					}
 					Bukkit.getScheduler().runTaskLater(main, () -> {
 						Block block = world.getBlockAt(newLoc);
 						int x = block.getLocation().getBlockX();
@@ -58,27 +62,9 @@ public class Geyser implements Listener {
 							blockFinal.setType(Material.AIR);
 						}
 					}, 3);
-					if(cd.cooldown <= 3) {
-						Bukkit.getScheduler().runTaskLater(main, () -> {
-							Block block = world.getBlockAt(newLoc);
-							int x = block.getLocation().getBlockX();
-							int z = block.getLocation().getBlockZ();
-							int y = block.getLocation().getBlockY();
-							Location locBlock = new Location(world, x, y - cd.cooldown - 1, z);
-							Block blockFinal = world.getBlockAt(locBlock);
-							if(blockFinal.getType() == Material.WATER || blockFinal.getType() == Material.STATIONARY_WATER) {
-								blockFinal.setType(Material.AIR);
-								p.sendMessage("caca");
-							}
-						}, 3);
-					}
+					
 					if(cd.cooldown <= 0) cd.task.cancel();
 				}, 0, 0);
-				Bukkit.getScheduler().runTaskLater(main, () -> {
-					if(newLoc.getBlock().getType() == Material.WATER) {
-						world.getBlockAt(newLoc).setType(Material.AIR);
-					}
-				}, 15);
 			//}
 		}
 	}

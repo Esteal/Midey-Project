@@ -1,7 +1,6 @@
 package fr.midey.MagicUHC.Magie.Eau;
 
 import org.bukkit.Bukkit;
-import org.bukkit.EntityEffect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -13,7 +12,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import fr.midey.MagicUHC.MagicUHC;
-import fr.midey.MagicUHC.Nature;
 
 public class Tsunami implements Listener {
 
@@ -58,7 +56,7 @@ public class Tsunami implements Listener {
 	
 	public void createSphere(Location center, int radius, Material to, Material from, Player player) {
 		World world = center.getWorld(); // Obtenir le monde dans lequel le joueur se trouve
-
+		WaterCooldown cd = new WaterCooldown();
 		// Parcourir tous les blocs dans la zone définie par le rayon autour de la position du joueur
 		for (int x = center.getBlockX() - radius; x <= center.getBlockX() + radius; x++) {
 			for (int y = center.getBlockY() - radius; y <= center.getBlockY() + radius; y++) {
@@ -68,18 +66,7 @@ public class Tsunami implements Listener {
 						// Vérifier si le bloc est de type AIR, pour éviter de remplacer les blocs existants
 						if (world.getBlockAt(x, y, z).getType() == from) {
 							// Définir le bloc à la position actuelle comme étant de la terre
-							for(Player p : Bukkit.getOnlinePlayers()) {
-								Location locs = p.getLocation();
-								//if(p == player) continue;
-								if(locs.getBlockX() == x
-									&& locs.getBlockY() == y
-									&& locs.getBlockZ() == z) {
-									p.playEffect(EntityEffect.HURT);
-									if(p.getHealth() - 0.5 <= 0) p.setHealth(0);
-									else p.setHealth(p.getHealth() - 0.5);
-									p.setVelocity(locs.getDirection().multiply(-1).setY(0.2));
-								}
-							}
+							cd.VerifyPropulsePlayer(x, y, z, 0, 0.5, player, true, 2);
 							world.getBlockAt(x, y, z).setType(to);
 						}
 					}
