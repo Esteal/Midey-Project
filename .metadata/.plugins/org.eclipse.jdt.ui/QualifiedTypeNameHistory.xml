@@ -56,8 +56,8 @@
     <fullyQualifiedTypeName name="org.bukkit.EntityEffect"/>
     <fullyQualifiedTypeName name="fr.midey.MagicUHC.MagicUHC"/>
     <fullyQualifiedTypeName name="fr.midey.MagicUHC.Nature"/>
-    <fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
     <fullyQualifiedTypeName name="fr.midey.MagicUHC.Magie.Eau.WaterCooldown"/>
     <fullyQualifiedTypeName name="org.bukkit.Bukkit"/>
     <fullyQualifiedTypeName name="org.bukkit.Location"/>
+    <fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
 </qualifiedTypeNameHistroy>

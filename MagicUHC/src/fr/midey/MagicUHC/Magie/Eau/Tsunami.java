@@ -66,7 +66,7 @@ public class Tsunami implements Listener {
 						// Vérifier si le bloc est de type AIR, pour éviter de remplacer les blocs existants
 						if (world.getBlockAt(x, y, z).getType() == from) {
 							// Définir le bloc à la position actuelle comme étant de la terre
-							cd.VerifyPropulsePlayer(x, y, z, 0, 0.5, player, true, 2);
+							cd.followLocation(x, y, z, center, player, 1, 1.25);
 							world.getBlockAt(x, y, z).setType(to);
 						}
 					}

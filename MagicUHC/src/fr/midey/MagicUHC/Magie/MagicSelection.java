@@ -16,26 +16,18 @@ public class MagicSelection {
 	}
 	
 	public void magieSelection() {
-		Bukkit.getScheduler().runTaskLaterAsynchronously(main, new Runnable() {
-			
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				
-			}
-		}, 20*5);
 		Nature[] natures = { Nature.Air, Nature.Eau, Nature.Feu, Nature.Terre };
 		for(Player p : Bukkit.getOnlinePlayers()) {
 			int nbRandom = (int) (Math.random() * natures.length + 1);
 			main.getPlayerNature().put(p, natures[nbRandom - 1]);
-			Bukkit.broadcastMessage("Vous venez d'obtenir la magie de l'élément suivant : §6§l§n" + main.getPlayerNature().get(p).toString());
+			p.sendMessage("Vous venez d'obtenir la magie de l'élément suivant : §6§l§n" + main.getPlayerNature().get(p).toString());
 			MagicItems its = null;
 			switch(main.getPlayerNature().get(p)) {
 				case Air:
 					its = new MagicItems("§bLame de vent", "§bMur de vent", "§bEnvolé céleste");
 					break;
 				case Eau:
-					its = new MagicItems("§9Tsunami", "§9Geyser", "§9Raz-de-marée");
+					its = new MagicItems("§9Tsunami", "§9Geyser", "§9Dash aquatique");
 					break;
 				case Feu:
 					its = new MagicItems("§4Griffe du dragon de feu", "§4Lance flamme", "§4Danse du feu");
