@@ -4,13 +4,7 @@
   <artifactId>MagicUHC</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>MagicUHC</name>
-  <repositories>
-  <repository>
-    <id>spigotmc-repo</id>
-    <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-  </repository>
-</repositories>
-  
+
   <dependencies>
     <dependency>
       <groupId>UhcMeetup2</groupId>
@@ -21,10 +15,28 @@
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
       <version>1.8.8-R0.1-SNAPSHOT</version>
-</dependency>
-    
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.bukkit</groupId>
+      <artifactId>bukkit</artifactId>
+      <version>1.8.8-R0.1-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.bukkit</groupId>
+      <artifactId>craftbukkit</artifactId>
+      <version>1.8.8-R0.1-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.spigotmc</groupId>
+      <artifactId>minecraft-server</artifactId>
+      <version>1.8.8-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
-  
+
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>

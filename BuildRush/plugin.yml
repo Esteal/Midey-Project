@@ -1,0 +1,8 @@
+name: BuildRush
+version: 1
+author: Midey
+main: fr.midey.buildrush.BuildRush
+commands:
+  teams:
+    description: permet de regler le nombre de team
+    permission: buildrush.use

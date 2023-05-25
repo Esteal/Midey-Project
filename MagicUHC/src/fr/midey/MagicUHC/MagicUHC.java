@@ -11,6 +11,9 @@ import fr.midey.MagicUHC.Magie.MagicSelection;
 import fr.midey.MagicUHC.Magie.Eau.DashAquatique;
 import fr.midey.MagicUHC.Magie.Eau.Geyser;
 import fr.midey.MagicUHC.Magie.Eau.Tsunami;
+import fr.midey.MagicUHC.Magie.Feu.CercleDesEnfers;
+import fr.midey.MagicUHC.Magie.Feu.Purification;
+import fr.midey.MagicUHC.Magie.Feu.WallEnfer;
 import fr.midey.MagicUHC.Magie.Terre.Faille;
 import fr.midey.MagicUHC.Magie.Terre.Piliers;
 import fr.midey.MagicUHC.Magie.Terre.Seisme;
@@ -37,6 +40,11 @@ public class MagicUHC extends JavaPlugin {
 		pm.registerEvents(new Tsunami(this), this);
 		pm.registerEvents(new Geyser(this), this);
 		pm.registerEvents(new DashAquatique(this), this);
+		
+		//Sorts de feu
+		pm.registerEvents(new WallEnfer(this), this);
+		pm.registerEvents(new Purification(this), this);
+		pm.registerEvents(new CercleDesEnfers(this), this);
 		
 		taskID = Bukkit.getScheduler().runTaskTimer(this, () -> {
 			if(Gmain.isState(GState.PLAYING)) {

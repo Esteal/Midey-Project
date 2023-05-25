@@ -38,7 +38,7 @@ public class WaterCooldown {
 					&& locPlayer.getBlockY() == y
 					&& locPlayer.getBlockZ() == z) {
 				p.setVelocity(v.multiply(vitesse));
-				//p.playEffect(EntityEffect.HURT);
+				p.playEffect(EntityEffect.HURT);
 				if(p.getHealth() - dammage <= 0) p.setHealth(0);
 				else p.setHealth(p.getHealth() - dammage);
 			}

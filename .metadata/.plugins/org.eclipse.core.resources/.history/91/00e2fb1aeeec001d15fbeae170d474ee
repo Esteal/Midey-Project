@@ -1,7 +1,0 @@
-package fr.midey.MagicUHC.Magie.Eau;
-
-import org.bukkit.event.Listener;
-
-public class DashAquatique implements Listener {
-
-}

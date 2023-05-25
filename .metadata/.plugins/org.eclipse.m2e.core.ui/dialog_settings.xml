@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="BuildRush"/>
 			<item value="UhcMeetup2"/>
 			<item value="MagicUHC"/>
 		</list>
@@ -10,12 +11,13 @@
 			<item value="MagicUHC"/>
 		</list>
 		<list key="artifactId">
+			<item value="BuildRush"/>
 			<item value="UhcMeetup2"/>
 			<item value="MagicUHC"/>
 		</list>
 		<list key="version">
-			<item value="1"/>
 			<item value="0.0.1-SNAPSHOT"/>
+			<item value="1"/>
 		</list>
 	</section>
 	<section name="org.eclipse.m2e.core.pom.overview">

@@ -30,7 +30,7 @@ public class MagicSelection {
 					its = new MagicItems("§9Tsunami", "§9Geyser", "§9Dash aquatique");
 					break;
 				case Feu:
-					its = new MagicItems("§4Griffe du dragon de feu", "§4Lance flamme", "§4Danse du feu");
+					its = new MagicItems("§4Purification", "§4Mur des enfers", "§4Cercle des enfers");
 					break;
 				case Terre:
 					its = new MagicItems("§6Séisme", "§6Pilier de pierre", "§6Choc sismique");
