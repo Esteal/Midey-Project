@@ -31,13 +31,17 @@ public class BuildRush extends JavaPlugin{
 	PlayerManager plm;
 	private int numberPerTeam = 1; //Définit le nombre de joueur par équipe
 	private HashMap<Player, States> playersStates; //Divers stats du joueur visible dans la classe States
-	private String gameTime = "00:00:00"; //timer du scoreboard
+	Scoreboard scoreboard ; //Scoreboard
 	private ScoreboardManager scoreboardManager; //Déclaration du scoreboard
 	private ScheduledExecutorService executorMonoThread; //Lié au scoreboard
 	private ScheduledExecutorService scheduledExecutorService; //Lié au scoreboard
+	private String gameTime = "00:00:00"; //timer du scoreboard
     private Team redTeam; //red team
     private Team blueTeam; //blue team
-    Scoreboard scoreboard ; //Scoreboard
+    private String redKill = "0";
+    private String blueKill = "0";
+    private int killObjective = 2; //nombre de kill à atteindre pour gagner la partie
+    private boolean gameEnding = false;
 
 	@Override
 	public void onEnable() {
@@ -104,7 +108,27 @@ public class BuildRush extends JavaPlugin{
 	public Team getRedTeam() { return redTeam; }
 
 	public Team getBlueTeam() { return blueTeam; }
+
+	public String getGameTime() { return gameTime; }
 	
+	public void setGameTime(String gameTime) { this.gameTime = gameTime; }
+
+	public String getRedKill() { return redKill; }
+
+	public void setRedKill(String redKill) { this.redKill = redKill; }
+
+	public String getBlueKill() { return blueKill; }
+
+	public void setBlueKill(String blueKill) { this.blueKill = blueKill; }
+
+	public int getKillObjective() { return killObjective; }
+
+	public void setKillObjective(int killObjective) { this.killObjective = killObjective; }
+
+	public boolean isGameEnding() { return gameEnding; }
+
+	public void setGameEnding(boolean gameEnding) { this.gameEnding = gameEnding; }
+
 	public Team doTeam(String teamName, String prefix) {
 		Team team = scoreboard.getTeam(teamName);
 		if(team == null) 
@@ -113,8 +137,4 @@ public class BuildRush extends JavaPlugin{
 		team.setAllowFriendlyFire(false);
 		return team;
 	}
-
-	public String getGameTime() { return gameTime; }
-	
-	public void setGameTime(String gameTime) { this.gameTime = gameTime; }
 }

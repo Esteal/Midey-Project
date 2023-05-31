@@ -56,16 +56,19 @@ public class TimerLaunching extends BukkitRunnable{
 				else {
 					if(!(main.getBlueTeam().hasPlayer(players) || main.getRedTeam().hasPlayer(players))) {
 						if(main.getBlueTeam().getSize() <= main.getRedTeam().getSize()) {
+							main.getPlayersStates().get(players).setTeam("Blue");
 							main.getBlueTeam().addPlayer(players);
 							players.sendMessage("§6[BuildRush] §7Vous avez rejoint l'équipe §9Bleu§7.");
 						}
 						else {
+							main.getPlayersStates().get(players).setTeam("Red");
 							main.getRedTeam().addPlayer(players);
 							players.sendMessage("§6[BuildRush] §7Vous avez rejoint l'équipe §cRouge§7.");
 						}
 					}
 					
 					players.sendTitle("§cGo !","");
+					players.getInventory().setArmorContents(main.getPlayersStates().get(players).getArmorContent());
 					players.playSound(players.getLocation(), Sound.ENDERDRAGON_GROWL, 1f, 1f);
 				}
 				if( values2.contains(main.getPlayers().size()) ||(!playersNb.contains(main.getPlayers().size()) && main.getNumberPerTeam() != 1)) {

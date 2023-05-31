@@ -1,14 +1,14 @@
 package fr.midey.buildrush.ScoreBoardManager;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
-
-import fr.midey.buildrush.BuildRush;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+
+import fr.midey.buildrush.BuildRush;
  
 /*
  * This file is part of SamaGamesAPI.

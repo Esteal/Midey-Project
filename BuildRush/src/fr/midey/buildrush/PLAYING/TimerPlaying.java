@@ -3,6 +3,7 @@ package fr.midey.buildrush.PLAYING;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.midey.buildrush.BuildRush;
+import fr.midey.buildrush.GameCycle;
 
 public class TimerPlaying extends BukkitRunnable{
 
@@ -31,7 +32,10 @@ public class TimerPlaying extends BukkitRunnable{
 				heure++;
 			}
 		}
-		
+		if(main.isGameEnding()) {
+			main.setGameCycle(GameCycle.ENDING);
+			cancel();
+		}
 		String formattedTime = String.format("%02d:%02d:%02d", heure, minute, seconde);
 		main.setGameTime(formattedTime);
 	}

@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="fr.midey.MagicUHC.Magie.Air.AirItem"/>
-    <fullyQualifiedTypeName name="fr.midey.MagicUHC.Magie.Eau.EauItem"/>
-    <fullyQualifiedTypeName name="fr.midey.MagicUHC.Items.MagicItems"/>
-    <fullyQualifiedTypeName name="org.apache.logging.log4j.core.jmx.Server"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
     <fullyQualifiedTypeName name="fr.midey.MagicUHC.MagicUHC"/>
     <fullyQualifiedTypeName name="fr.midey.MagicUHC.Nature"/>
@@ -24,30 +20,24 @@
     <fullyQualifiedTypeName name="org.bukkit.event.block.Action"/>
     <fullyQualifiedTypeName name="fr.midey.buildrush.util.ItemsConstructor"/>
     <fullyQualifiedTypeName name="javax.print.attribute.HashAttributeSet"/>
-    <fullyQualifiedTypeName name="org.bukkit.event.entity.EntityDamageByEntityEvent"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.util.Collection"/>
     <fullyQualifiedTypeName name="org.bukkit.craftbukkit.libs.joptsimple.internal.Reflection"/>
     <fullyQualifiedTypeName name="com.google.common.reflect.Reflection"/>
-    <fullyQualifiedTypeName name="fr.midey.buildrush.BuildRush"/>
     <fullyQualifiedTypeName name="java.util.concurrent.ScheduledExecutorService"/>
     <fullyQualifiedTypeName name="java.util.concurrent.Executors"/>
     <fullyQualifiedTypeName name="fr.midey.buildrush.ScoreBoardManager.ScoreboardManager"/>
     <fullyQualifiedTypeName name="org.bukkit.event.inventory.InventoryClickEvent"/>
     <fullyQualifiedTypeName name="fr.midey.buildrush.tools.ItemControler"/>
     <fullyQualifiedTypeName name="net.md_5.bungee.api.ChatColor"/>
-    <fullyQualifiedTypeName name="org.bukkit.event.EventHandler"/>
     <fullyQualifiedTypeName name="org.bukkit.event.player.PlayerInteractEvent"/>
     <fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
     <fullyQualifiedTypeName name="org.bukkit.Sound"/>
     <fullyQualifiedTypeName name="fr.midey.buildrush.Player.FoodListener"/>
-    <fullyQualifiedTypeName name="fr.midey.buildrush.GameCycle"/>
     <fullyQualifiedTypeName name="net.minecraft.server.v1_8_R3.PacketPlayOutChat"/>
     <fullyQualifiedTypeName name="org.bukkit.ChatColor"/>
     <fullyQualifiedTypeName name="net.minecraft.server.v1_8_R3.ChatComponentText"/>
     <fullyQualifiedTypeName name="org.bukkit.plugin.PluginManager"/>
-    <fullyQualifiedTypeName name="org.bukkit.inventory.ItemStack"/>
-    <fullyQualifiedTypeName name="org.bukkit.Material"/>
     <fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
     <fullyQualifiedTypeName name="org.bukkit.World"/>
     <fullyQualifiedTypeName name="org.bukkit.Location"/>
@@ -59,5 +49,15 @@
     <fullyQualifiedTypeName name="fr.midey.zilconis.Particle.ParticleEffect"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="org.bukkit.scoreboard.Scoreboard"/>
+    <fullyQualifiedTypeName name="org.bukkit.event.EventHandler"/>
+    <fullyQualifiedTypeName name="org.bukkit.event.entity.PlayerDeathEvent"/>
     <fullyQualifiedTypeName name="org.bukkit.Bukkit"/>
+    <fullyQualifiedTypeName name="org.bukkit.event.entity.EntityDamageByEntityEvent"/>
+    <fullyQualifiedTypeName name="org.bukkit.entity.Player"/>
+    <fullyQualifiedTypeName name="fr.midey.buildrush.BuildRush"/>
+    <fullyQualifiedTypeName name="fr.midey.buildrush.GameCycle"/>
+    <fullyQualifiedTypeName name="org.bukkit.inventory.ItemStack"/>
+    <fullyQualifiedTypeName name="fr.midey.buildrush.tools.ItemsConstructor"/>
+    <fullyQualifiedTypeName name="org.bukkit.Material"/>
+    <fullyQualifiedTypeName name="org.bukkit.enchantments.Enchantment"/>
 </qualifiedTypeNameHistroy>
