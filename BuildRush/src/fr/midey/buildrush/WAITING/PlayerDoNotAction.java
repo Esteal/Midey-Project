@@ -1,7 +1,7 @@
 package fr.midey.buildrush.WAITING;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
+import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -18,32 +18,28 @@ import fr.midey.buildrush.GameCycle;
 public class PlayerDoNotAction implements Listener {
 
 	private BuildRush main;
-	private Collection<GameCycle> gc = new ArrayList<>();
+	private List<GameCycle> gc = Arrays.asList(GameCycle.LAUNCHING, GameCycle.WAITING, GameCycle.ENDING);
 	public PlayerDoNotAction(BuildRush main) {
 		this.main = main;
-		gc.add(GameCycle.LAUNCHING);
-		gc.add(GameCycle.WAITING);
-		gc.add(GameCycle.ENDING);
-		
 	}
 	//Evite que le jouer prenne/mette des damages
 	@EventHandler
 	public void dontAttack(EntityDamageEvent event) {
 		if(gc.contains(main.getGameCycle())) {
-			event.setCancelled(true);
+			//event.setCancelled(true);
 		}
 	}
 	
 	@EventHandler
 	public void onPlace(BlockPlaceEvent event) {
-		if(event.getBlock().getType() != Material.AIR) {
+		if(gc.contains(main.getGameCycle()) && event.getBlock().getType() != Material.AIR) {
 			event.setCancelled(true);
 		}
 	}
 	
 	@EventHandler
 	public void onBreak(BlockBreakEvent event) {
-		if(event.getBlock().getType() != Material.AIR) {
+		if(gc.contains(main.getGameCycle()) && event.getBlock().getType() != Material.AIR) {
 			event.setCancelled(true);
 		}
 	}

@@ -1,5 +1,8 @@
 package fr.midey.buildrush.WAITING;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -17,8 +20,9 @@ import fr.midey.buildrush.tools.PlayerState;
 public class PlayerManager implements Listener {
 
 	private BuildRush main;
-	
+	List<GameCycle> gc;
 	public PlayerManager(BuildRush main) {
+		gc = Arrays.asList(GameCycle.LAUNCHING, GameCycle.WAITING);	
 		this.main = main;
 	}
 
@@ -26,27 +30,43 @@ public class PlayerManager implements Listener {
 	@EventHandler
 	public void playerJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
-		if(main.getGameCycle() == GameCycle.WAITING && (main.getNumberPerTeam() <= (main.getPlayers().size() * 2) || main.getPlayers().size() == 0)) {
-			doGestion(player);
+		if(gc.contains(main.getGameCycle())) {
+			doGestionEnable(player);
+			if((main.getNumberPerTeam() * 2)== (main.getPlayers().size() - 1)) player.kickPlayer("Partie Full");
+			if(main.getPlayers().size() >= main.getNumberPerTeam() * 2 && !(main.getGameCycle() == GameCycle.LAUNCHING)) {
+				TimerLaunching timeStart = new TimerLaunching(main);
+				timeStart.runTaskTimer(main, 0, 20);
+				main.setGameCycle(GameCycle.LAUNCHING);
+			}
 		}
 		else if (!main.getPlayers().contains(player)){
 			player.setGameMode(GameMode.SPECTATOR);
-			player.sendMessage("§7La partie a déjà commencé donc vous avez été mis en mode spectateur");
+			player.sendMessage("La partie a déjà commencé");
 		}
 	}
 	
 	@EventHandler
 	public void PlayerQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
-		if(main.getGameCycle() == GameCycle.WAITING || main.getGameCycle() == GameCycle.LAUNCHING) {
+		doGestionDisable(player);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void doGestionDisable(Player player) {
+		if(gc.contains(main.getGameCycle()) || main.getGameCycle() == GameCycle.PLAYING) {
 			main.getPlayers().remove(player);
+			if(main.getBlueTeam().hasPlayer(player)) 
+				main.getBlueTeam().removePlayer(player);
+			else if(main.getRedTeam().hasPlayer(player)) 
+				main.getRedTeam().removePlayer(player);
 			main.getScoreboardManager().onLogout(player);
 		}
 	}
 	
-	public void doGestion(Player player) {
+	public void doGestionEnable(Player player) {
 		PlayerState.clearALL(player);
 		main.getPlayers().add(player);
+		player.setLevel(0);
 		player.setGameMode(GameMode.SURVIVAL);
 		ItemsConstructor banner = new ItemsConstructor(Material.BANNER);
 		ItemsConstructor bed = new ItemsConstructor(Material.BED);

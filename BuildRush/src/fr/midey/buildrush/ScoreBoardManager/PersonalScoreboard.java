@@ -2,7 +2,9 @@ package fr.midey.buildrush.ScoreBoardManager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
- 
+
+import fr.midey.buildrush.BuildRush;
+
 import java.util.UUID;
  
 /*
@@ -31,7 +33,7 @@ public class PersonalScoreboard {
         this.player = player;
         uuid = player.getUniqueId();
         objectiveSign = new ObjectiveSign("sidebar", "BuildRush");
- 
+
         reloadData();
         objectiveSign.addReceiver(player);
     }
@@ -42,7 +44,7 @@ public class PersonalScoreboard {
         objectiveSign.setDisplayName("§6§lBUILDRUSH");
  
         objectiveSign.setLine(0, "§1");
-        objectiveSign.setLine(1, "§7Temps de jeu: §b");
+        objectiveSign.setLine(1, "§7Temps de jeu: §b" + BuildRush.getInstance().getGameTime());
         objectiveSign.setLine(2, "§7Coins: §a");
         objectiveSign.setLine(3, "§3");
         objectiveSign.setLine(4, "§cRouge §7» ");

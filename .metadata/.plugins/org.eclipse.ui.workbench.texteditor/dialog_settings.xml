@@ -6,20 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="get"/>
 		<list key="findhistory">
+			<item value="get"/>
+			<item value="getC"/>
+			<item value="rece"/>
+			<item value="reic"/>
+			<item value="RawTeam"/>
+			<item value="create"/>
+			<item value="getTeamBy"/>
+			<item value="team"/>
+			<item value="VTeam"/>
+			<item value="updateDisplay"/>
 			<item value="depen"/>
 			<item value="spigot"/>
 			<item value="crystalNeutre"/>
 			<item value="beskarChestplateRecipe"/>
 			<item value="beskarHelmetRecipe"/>
-			<item value="helmetBeskar"/>
-			<item value="vitesse"/>
-			<item value="coeff"/>
-			<item value="setPState"/>
-			<item value="isPstate"/>
-			<item value="jedis"/>
-			<item value=""/>
 		</list>
 		<list key="replacehistory">
 			<item value="crystalGreen"/>

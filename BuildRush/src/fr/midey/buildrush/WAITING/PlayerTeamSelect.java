@@ -37,6 +37,7 @@ public class PlayerTeamSelect implements Listener {
 		}
 	}
 	//Permet de sÈlectionner une Èquipe
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onClickBannerInInventory(InventoryClickEvent event) {
 		ItemStack it = event.getCurrentItem();
@@ -44,15 +45,25 @@ public class PlayerTeamSelect implements Listener {
 		Inventory inv = event.getClickedInventory();
 		if(inv.getName().equalsIgnoreCase("Choisi ton Èquipe")) {
 			Player player = (Player) event.getWhoClicked();
-			if(ItemControler.itemControler(it, "ßc…quipe rouge")) {
-				player.sendMessage("ß6[BuildRush] ß7Vous avez rejoint l'Èquipe ßcRougeß7.");
+			if(ItemControler.itemControler(it, "ßc…quipe rouge") && main.getRedTeam().getSize() < main.getNumberPerTeam()) {
+				main.getRedTeam().addPlayer(player.getPlayer());
 				main.getPlayersStates().get(player).setTeam("red");
+				player.sendMessage("ß6[BuildRush] ß7Vous avez rejoint l'Èquipe ßcRougeß7.");
 			}
-			else if(ItemControler.itemControler(it, "ß9…quipe bleue")) {
+			else if(ItemControler.itemControler(it, "ß9…quipe bleue") && main.getBlueTeam().getSize() < main.getNumberPerTeam()) {
+				main.getBlueTeam().addPlayer(player.getPlayer());
 				main.getPlayersStates().get(player).setTeam("blue");
 				player.sendMessage("ß6[BuildRush] ß7Vous avez rejoint l'Èquipe ß9Bleuß7.");
 			}
-			else if(ItemControler.itemControler(it, "ße…quipe alÈatoire")) main.getPlayersStates().get(player).setTeam("rdm");
+			else if(ItemControler.itemControler(it, "ße…quipe alÈatoire")) {
+				
+				if(main.getBlueTeam().hasPlayer(player)) 
+					main.getBlueTeam().removePlayer(player);
+				if(main.getRedTeam().hasPlayer(player)) 
+					main.getRedTeam().removePlayer(player);
+				
+				main.getPlayersStates().get(player).setTeam(null);
+			}
 			doInventoryOfSelectionTeam(player);
 			event.setCancelled(true);
 		}

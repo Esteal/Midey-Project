@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="Zilconis"/>
 			<item value="BuildRush"/>
 			<item value="UhcMeetup2"/>
 			<item value="MagicUHC"/>
@@ -11,6 +12,7 @@
 			<item value="MagicUHC"/>
 		</list>
 		<list key="artifactId">
+			<item value="Zilconis"/>
 			<item value="BuildRush"/>
 			<item value="UhcMeetup2"/>
 			<item value="MagicUHC"/>
