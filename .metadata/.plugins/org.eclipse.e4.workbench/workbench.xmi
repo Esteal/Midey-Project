@@ -247,7 +247,7 @@
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="_JMGGkP_wEe26_ckCTTfsoA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="States.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;States.java&quot; partName=&quot;States.java&quot; title=&quot;States.java&quot; tooltip=&quot;BuildRush/src/fr/midey/buildrush/Player/States.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/BuildRush/src/fr/midey/buildrush/Player/States.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2366&quot; selectionTopPixel=&quot;458&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;States.java&quot; partName=&quot;States.java&quot; title=&quot;States.java&quot; tooltip=&quot;BuildRush/src/fr/midey/buildrush/Player/States.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/BuildRush/src/fr/midey/buildrush/Player/States.java&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
@@ -395,7 +395,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_7Pl8g_y7Ee2x-tM5Y6aRTg" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_tvomgP-kEe26_ckCTTfsoA" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_7PnyR_y7Ee2x-tM5Y6aRTg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_5rAlkABjEe6_56zMWvLj7g" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_7PnyR_y7Ee2x-tM5Y6aRTg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_7Pl8kPy7Ee2x-tM5Y6aRTg" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -422,11 +422,14 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_7Pl81Py7Ee2x-tM5Y6aRTg" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_tvrCw_-kEe26_ckCTTfsoA" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_7Pnxw_y7Ee2x-tM5Y6aRTg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_5rJIcABjEe6_56zMWvLj7g" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_7Pnxw_y7Ee2x-tM5Y6aRTg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_7Pl83_y7Ee2x-tM5Y6aRTg" elementId="group.nav" toBeRendered="false">
         <tags>toolbarSeparator</tags>
         <children xsi:type="menu:ToolBarSeparator" xmi:id="_7Pl84Py7Ee2x-tM5Y6aRTg" elementId="group.nav" toBeRendered="false"/>
+      </children>
+      <children xsi:type="menu:ToolBar" xmi:id="_6faeAABjEe6_56zMWvLj7g" elementId="org.eclipse.jdt.ui.CompilationUnitEditor" visible="false">
+        <tags>Draggable</tags>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_7Pl84vy7Ee2x-tM5Y6aRTg" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
