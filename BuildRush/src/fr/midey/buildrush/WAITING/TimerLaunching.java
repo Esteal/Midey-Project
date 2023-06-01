@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -12,6 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import fr.midey.buildrush.BuildRush;
 import fr.midey.buildrush.GameCycle;
 import fr.midey.buildrush.PLAYING.TimerPlaying;
+import fr.midey.buildrush.tools.PlayerState;
 import net.minecraft.server.v1_8_R3.ChatComponentText;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 
@@ -57,17 +59,20 @@ public class TimerLaunching extends BukkitRunnable{
 					if(!(main.getBlueTeam().hasPlayer(players) || main.getRedTeam().hasPlayer(players))) {
 						if(main.getBlueTeam().getSize() <= main.getRedTeam().getSize()) {
 							main.getPlayersStates().get(players).setTeam("Blue");
+							main.getPlayersStates().get(players).colorArmor(Color.AQUA);
 							main.getBlueTeam().addPlayer(players);
 							players.sendMessage("§6[BuildRush] §7Vous avez rejoint l'équipe §9Bleu§7.");
 						}
 						else {
 							main.getPlayersStates().get(players).setTeam("Red");
+							main.getPlayersStates().get(players).colorArmor(Color.RED);
 							main.getRedTeam().addPlayer(players);
 							players.sendMessage("§6[BuildRush] §7Vous avez rejoint l'équipe §cRouge§7.");
 						}
 					}
 					
 					players.sendTitle("§cGo !","");
+					PlayerState.clearALL(players);
 					players.getInventory().setArmorContents(main.getPlayersStates().get(players).getArmorContent());
 					players.playSound(players.getLocation(), Sound.ENDERDRAGON_GROWL, 1f, 1f);
 				}

@@ -54,6 +54,7 @@ public class PlayerKillAnotherPlayer implements Listener {
 				}
 				Bukkit.getScheduler().runTaskLater(main, () -> {
 					victim.spigot().respawn();
+					victim.getInventory().setArmorContents(main.getPlayersStates().get(victim).getArmorContent());
 				}, 1);
 			}
 		}

@@ -1,5 +1,6 @@
 package fr.midey.buildrush.Player;
 
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -15,31 +16,51 @@ public class States {
 	private String teams;
 	private Player killer;
 	private ItemStack[] armorContent;
+	private ItemsConstructor helmet;
+	private ItemsConstructor chestplate;
+	private ItemsConstructor leggings;
+	private ItemsConstructor boots;
 	private ItemStack sword;
 	private ItemStack pickaxe;
 	
 	public States() {
-		ItemsConstructor helmet = new ItemsConstructor(Material.LEATHER_HELMET);
-		ItemsConstructor chestplate = new ItemsConstructor(Material.LEATHER_CHESTPLATE);
-		ItemsConstructor leggings = new ItemsConstructor(Material.LEATHER_LEGGINGS);
-		ItemsConstructor boots = new ItemsConstructor(Material.LEATHER_BOOTS);
+		this.helmet = new ItemsConstructor(Material.LEATHER_HELMET);
+		this.chestplate = new ItemsConstructor(Material.LEATHER_CHESTPLATE);
+		this.leggings = new ItemsConstructor(Material.LEATHER_LEGGINGS);
+		this.boots = new ItemsConstructor(Material.LEATHER_BOOTS);
 		
-		helmet.applyEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-		chestplate.applyEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-		leggings.applyEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-		boots.applyEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+		enchantArmor(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
 	
-		helmet.applyUmbreakable(true);
-		chestplate.applyUmbreakable(true);
-		leggings.applyUmbreakable(true);
-		boots.applyUmbreakable(true);
+		this.helmet.applyUmbreakable(true);
+		this.chestplate.applyUmbreakable(true);
+		this.leggings.applyUmbreakable(true);
+		this.boots.applyUmbreakable(true);
 		
-		armorContent = new ItemStack[4];
-		
-		armorContent[3] = helmet.getItem();
-		armorContent[2] = chestplate.getItem();
-		armorContent[1] = leggings.getItem();
-		armorContent[0] = boots.getItem();
+		armorFile();
+	}
+	
+	public void armorFile() {
+		this.armorContent = new ItemStack[4];
+		this.armorContent[3] = helmet.getItem();
+		this.armorContent[2] = chestplate.getItem();
+		this.armorContent[1] = leggings.getItem();
+		this.armorContent[0] = boots.getItem();
+	}
+	
+	public void enchantArmor(Enchantment enchant, int level) {
+		this.helmet.applyEnchant(enchant, level);
+		this.chestplate.applyEnchant(enchant, level);
+		this.leggings.applyEnchant(enchant, level);
+		this.boots.applyEnchant(enchant, level);
+		armorFile();
+	}
+	
+	public void colorArmor(Color color) {
+		this.helmet.colorArmor(color);
+		this.chestplate.colorArmor(color);
+		this.leggings.colorArmor(color);
+		this.boots.colorArmor(color);
+		armorFile();
 	}
 	
 	public String getTeam() { return team; }

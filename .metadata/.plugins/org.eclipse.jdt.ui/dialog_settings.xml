@@ -71,6 +71,7 @@
 		<item key="JarManifestWizardPage.MANIFEST_LOCATION" value=""/>
 		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\esteb\Desktop\serveur local (BuildRush)\plugins\BuildRush.jar"/>
 			<item value="C:\Users\esteb\OneDrive\Bureau\BuildRush\plugins\BuildRush.jar"/>
 			<item value="C:\Users\esteb\OneDrive\Bureau\Zilconis\plugins\Zilconis.jar"/>
 			<item value="C:\Users\esteb\OneDrive\Bureau\Uhc meetup\plugins\MagicUHC.jar"/>
@@ -90,7 +91,6 @@
 			<item value="C:\Users\esteb\Desktop\serveur local (nefazia)\plugins\CraftRoyale.jar"/>
 			<item value="C:\Users\esteb\Desktop\serveur local (SpellMaker)\plugins\spellMaker.jar"/>
 			<item value="C:\Users\esteb\Desktop\serveur local  (uhc meetup2)\plugins\UhcMeetup.jar"/>
-			<item value="C:\Users\esteb\Desktop\serveur local  (uhc meetup2)\plugins\WorldManager.jar"/>
 		</list>
 	</section>
 	<section name="JavaSearchPage">

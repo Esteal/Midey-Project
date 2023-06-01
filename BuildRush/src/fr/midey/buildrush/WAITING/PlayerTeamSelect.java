@@ -1,6 +1,7 @@
 package fr.midey.buildrush.WAITING;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -48,10 +49,12 @@ public class PlayerTeamSelect implements Listener {
 			if(ItemControler.itemControler(it, "ßc…quipe rouge") && main.getRedTeam().getSize() < main.getNumberPerTeam()) {
 				main.getRedTeam().addPlayer(player.getPlayer());
 				main.getPlayersStates().get(player).setTeam("red");
+				main.getPlayersStates().get(player).colorArmor(Color.RED);
 				player.sendMessage("ß6[BuildRush] ß7Vous avez rejoint l'Èquipe ßcRougeß7.");
 			}
 			else if(ItemControler.itemControler(it, "ß9…quipe bleue") && main.getBlueTeam().getSize() < main.getNumberPerTeam()) {
 				main.getBlueTeam().addPlayer(player.getPlayer());
+				main.getPlayersStates().get(player).colorArmor(Color.AQUA);
 				main.getPlayersStates().get(player).setTeam("blue");
 				player.sendMessage("ß6[BuildRush] ß7Vous avez rejoint l'Èquipe ß9Bleuß7.");
 			}
