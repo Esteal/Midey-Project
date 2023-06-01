@@ -1,5 +1,6 @@
 package fr.midey.buildrush.Player;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -35,7 +36,7 @@ public class States {
 		this.chestplate.applyUmbreakable(true);
 		this.leggings.applyUmbreakable(true);
 		this.boots.applyUmbreakable(true);
-		
+		Bukkit.broadcastMessage("aa");
 		armorFile();
 	}
 	
