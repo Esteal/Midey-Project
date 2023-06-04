@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.lang.Math"/>
-    <fullyQualifiedTypeName name="fr.midey.MagicUHC.MagicUHC"/>
     <fullyQualifiedTypeName name="fr.midey.MagicUHC.Nature"/>
     <fullyQualifiedTypeName name="net.minecraft.server.v1_8_R3.PacketPlayOutWorldParticles"/>
     <fullyQualifiedTypeName name="fr.midey.MagicUHC.Magie.Eau.WaterCooldown"/>
@@ -57,7 +55,9 @@
     <fullyQualifiedTypeName name="fr.midey.buildrush.BuildRush"/>
     <fullyQualifiedTypeName name="fr.midey.buildrush.GameCycle"/>
     <fullyQualifiedTypeName name="org.bukkit.inventory.ItemStack"/>
-    <fullyQualifiedTypeName name="fr.midey.buildrush.tools.ItemsConstructor"/>
     <fullyQualifiedTypeName name="org.bukkit.Material"/>
     <fullyQualifiedTypeName name="org.bukkit.enchantments.Enchantment"/>
+    <fullyQualifiedTypeName name="org.bukkit.inventory.meta.LeatherArmorMeta"/>
+    <fullyQualifiedTypeName name="org.bukkit.Color"/>
+    <fullyQualifiedTypeName name="fr.midey.buildrush.tools.ItemsConstructor"/>
 </qualifiedTypeNameHistroy>

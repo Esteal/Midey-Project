@@ -42,7 +42,7 @@ public class PlayerKillAnotherPlayer implements Listener {
 				main.getPlayersStates().get(killer).setKills(main.getPlayersStates().get(killer).getKills() + 1);
 				main.getPlayersStates().get(killer).setPoint(main.getPlayersStates().get(killer).getPoint() + 10);
 				main.getPlayersStates().get(victim).setKiller(null);
-				if(main.getPlayersStates().get(killer).getTeam().equalsIgnoreCase("Bleue")) {
+				if(main.getPlayersStates().get(killer).getTeam().equalsIgnoreCase("Blue")) {
 					main.setBlueKill(killScoreboard("Blue"));
 					if(main.getBlueKill().equalsIgnoreCase("" + main.getKillObjective()))
 						main.setGameEnding(true);
@@ -52,10 +52,14 @@ public class PlayerKillAnotherPlayer implements Listener {
 					if(main.getRedKill().equalsIgnoreCase("" + main.getKillObjective()))
 						main.setGameEnding(true);
 				}
-				Bukkit.getScheduler().runTaskLater(main, () -> {
-					victim.spigot().respawn();
-				}, 1);
 			}
+			Bukkit.getScheduler().runTaskLater(main, () -> {
+				victim.spigot().respawn();
+				Bukkit.getScheduler().runTaskLater(main, () -> {
+					main.getPlayersStates().get(victim).stuffLoad();
+				}, 1);
+			}, 1);
+			event.getDrops().clear();;
 		}
 	}
 	

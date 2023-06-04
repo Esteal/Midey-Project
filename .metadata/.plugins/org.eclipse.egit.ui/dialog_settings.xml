@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<item key="org.eclipse.egit.ui.internal.clone.GitSelectWizardPageWizardSel" value="0"/>
+<<<<<<< HEAD
 	<item key="GitSelectRepositoryPage.lastRepository" value="C:\Dev\Minecraft\Repo_git\Midey-Project\.git"/>
+=======
+	<item key="GitSelectRepositoryPage.lastRepository" value="C:\Users\esteb\Desktop\devellopement\eclipse\Repo_Git\.git"/>
+>>>>>>> 4dfd7b6bd9c6f794fd89bb220aa6e6fb2b68abf0
 	<section name="GitImportWizard">
 		<item key="GitProjectsImportPage.STORE_NESTED_PROJECTS" value="true"/>
 	</section>

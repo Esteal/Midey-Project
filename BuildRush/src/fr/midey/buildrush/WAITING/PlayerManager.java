@@ -74,7 +74,7 @@ public class PlayerManager implements Listener {
 		banner.applyName("§b§lSélection de l'équipe");
 		player.getInventory().setItem(0, banner.getItem());
 		player.getInventory().setItem(8, bed.getItem());
-		main.getPlayersStates().put(player, new States());
+		main.getPlayersStates().put(player, new States(player));
 		main.getScoreboardManager().onLogin(player);
 	}
 }

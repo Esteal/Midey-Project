@@ -40,7 +40,7 @@ public class BuildRush extends JavaPlugin{
     private Team blueTeam; //blue team
     private String redKill = "0";
     private String blueKill = "0";
-    private int killObjective = 2; //nombre de kill à atteindre pour gagner la partie
+    private int killObjective = 20; //nombre de kill à atteindre pour gagner la partie
     private boolean gameEnding = false;
 
 	@Override

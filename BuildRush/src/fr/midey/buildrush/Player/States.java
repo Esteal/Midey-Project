@@ -1,5 +1,6 @@
 package fr.midey.buildrush.Player;
 
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -14,32 +15,71 @@ public class States {
 	private int kills;
 	private String teams;
 	private Player killer;
+	private Player player;
 	private ItemStack[] armorContent;
-	private ItemStack sword;
-	private ItemStack pickaxe;
+	private ItemsConstructor helmet;
+	private ItemsConstructor chestplate;
+	private ItemsConstructor leggings;
+	private ItemsConstructor boots;
+	private ItemsConstructor sword;
+	private ItemsConstructor pickaxe;
 	
-	public States() {
-		ItemsConstructor helmet = new ItemsConstructor(Material.LEATHER_HELMET);
-		ItemsConstructor chestplate = new ItemsConstructor(Material.LEATHER_CHESTPLATE);
-		ItemsConstructor leggings = new ItemsConstructor(Material.LEATHER_LEGGINGS);
-		ItemsConstructor boots = new ItemsConstructor(Material.LEATHER_BOOTS);
+	public States(Player player) {
+		this.player = player;
+		this.helmet = new ItemsConstructor(Material.LEATHER_HELMET);
+		this.chestplate = new ItemsConstructor(Material.LEATHER_CHESTPLATE);
+		this.leggings = new ItemsConstructor(Material.LEATHER_LEGGINGS);
+		this.boots = new ItemsConstructor(Material.LEATHER_BOOTS);
+		this.sword = new ItemsConstructor(Material.IRON_SWORD);
+		this.pickaxe = new ItemsConstructor(Material.IRON_PICKAXE);
 		
-		helmet.applyEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-		chestplate.applyEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-		leggings.applyEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-		boots.applyEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+		
+		enchantArmor(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+		sword.applyEnchant(Enchantment.DAMAGE_ALL, 2);
+		pickaxe.applyEnchant(Enchantment.DIG_SPEED, 1);
+		
+		this.helmet.applyUmbreakable(true);
+		this.chestplate.applyUmbreakable(true);
+		this.leggings.applyUmbreakable(true);
+		this.boots.applyUmbreakable(true);
+		this.sword.applyUmbreakable(true);
+		
+		armorFile();
+	}
 	
-		helmet.applyUmbreakable(true);
-		chestplate.applyUmbreakable(true);
-		leggings.applyUmbreakable(true);
-		boots.applyUmbreakable(true);
-		
-		armorContent = new ItemStack[4];
-		
-		armorContent[3] = helmet.getItem();
-		armorContent[2] = chestplate.getItem();
-		armorContent[1] = leggings.getItem();
-		armorContent[0] = boots.getItem();
+	public void stuffLoad() {
+		player.getInventory().setArmorContents(armorContent);
+		player.getInventory().setItem(0, sword.getItem());
+		player.getInventory().setItem(1, pickaxe.getItem());
+		player.getInventory().setItem(2, new ItemStack(Material.GOLDEN_APPLE, 16));
+		for(int i = 3; i<9;i++) {
+			player.getInventory().setItem(i, new ItemStack(Material.SANDSTONE, 64));
+		}
+		player.updateInventory();
+	}
+	
+	public void armorFile() {
+		this.armorContent = new ItemStack[4];
+		this.armorContent[3] = helmet.getItem();
+		this.armorContent[2] = chestplate.getItem();
+		this.armorContent[1] = leggings.getItem();
+		this.armorContent[0] = boots.getItem();
+	}
+	
+	public void enchantArmor(Enchantment enchant, int level) {
+		this.helmet.applyEnchant(enchant, level);
+		this.chestplate.applyEnchant(enchant, level);
+		this.leggings.applyEnchant(enchant, level);
+		this.boots.applyEnchant(enchant, level);
+		armorFile();
+	}
+	
+	public void colorArmor(Color color) {
+		this.helmet.colorArmor(color);
+		this.chestplate.colorArmor(color);
+		this.leggings.colorArmor(color);
+		this.boots.colorArmor(color);
+		armorFile();
 	}
 	
 	public String getTeam() { return team; }
@@ -60,11 +100,11 @@ public class States {
 	public ItemStack[] getArmorContent() { return armorContent; }
 	public void setArmorContent(ItemStack[] armorContent) { this.armorContent = armorContent; }
 
-	public ItemStack getSword() { return sword; }
+	public ItemsConstructor getSword() { return sword; }
 
-	public void setSword(ItemStack sword) { this.sword = sword; }
+	public void setSword(ItemsConstructor sword) { this.sword = sword; }
 
-	public ItemStack getPickaxe() { return pickaxe; }
+	public ItemsConstructor getPickaxe() { return pickaxe; }
 
-	public void setPickaxe(ItemStack pickaxe) { this.pickaxe = pickaxe; }
+	public void setPickaxe(ItemsConstructor pickaxe) { this.pickaxe = pickaxe; }
 }
