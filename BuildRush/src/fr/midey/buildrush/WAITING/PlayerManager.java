@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,12 +33,6 @@ public class PlayerManager implements Listener {
 		Player player = event.getPlayer();
 		if(gc.contains(main.getGameCycle())) {
 			doGestionEnable(player);
-			if((main.getNumberPerTeam() * 2)== (main.getPlayers().size() - 1)) player.kickPlayer("Partie Full");
-			if(main.getPlayers().size() >= main.getNumberPerTeam() * 2 && !(main.getGameCycle() == GameCycle.LAUNCHING)) {
-				TimerLaunching timeStart = new TimerLaunching(main);
-				timeStart.runTaskTimer(main, 0, 20);
-				main.setGameCycle(GameCycle.LAUNCHING);
-			}
 		}
 		else if (!main.getPlayers().contains(player)){
 			player.setGameMode(GameMode.SPECTATOR);
@@ -64,6 +59,8 @@ public class PlayerManager implements Listener {
 	}
 	
 	public void doGestionEnable(Player player) {
+		Location spawnLocation = new Location(player.getWorld(), main.getConfig().getDouble("spawn.hub.x"), main.getConfig().getDouble("spawn.hub.y"), main.getConfig().getDouble("spawn.hub.z"), (float) main.getConfig().getDouble("spawn.hub.pitch"), (float) main.getConfig().getDouble("spawn.hub.yaw"));
+		player.teleport(spawnLocation);
 		PlayerState.clearALL(player);
 		main.getPlayers().add(player);
 		player.setLevel(0);
@@ -76,5 +73,11 @@ public class PlayerManager implements Listener {
 		player.getInventory().setItem(8, bed.getItem());
 		main.getPlayersStates().put(player, new States(player));
 		main.getScoreboardManager().onLogin(player);
+		if((main.getNumberPerTeam() * 2)== (main.getPlayers().size() - 1)) player.kickPlayer("Partie Full");
+		if(main.getPlayers().size() >= main.getNumberPerTeam() * 2 && !(main.getGameCycle() == GameCycle.LAUNCHING)) {
+			TimerLaunching timeStart = new TimerLaunching(main);
+			timeStart.runTaskTimer(main, 0, 20);
+			main.setGameCycle(GameCycle.LAUNCHING);
+		}
 	}
 }

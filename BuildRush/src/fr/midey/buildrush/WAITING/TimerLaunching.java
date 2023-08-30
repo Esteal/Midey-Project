@@ -3,53 +3,57 @@ package fr.midey.buildrush.WAITING;
 import java.util.Arrays;
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Color;
+import org.bukkit.Location;
 import org.bukkit.Sound;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.World;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.midey.buildrush.BuildRush;
 import fr.midey.buildrush.GameCycle;
 import fr.midey.buildrush.PLAYING.TimerPlaying;
+import fr.midey.buildrush.tools.DisplayHotBarMessage;
 import fr.midey.buildrush.tools.PlayerState;
-import net.minecraft.server.v1_8_R3.ChatComponentText;
-import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 
 public class TimerLaunching extends BukkitRunnable{
 
 	private BuildRush main;
+	private DisplayHotBarMessage displayHotBarMessage;
 	List<Integer> values = Arrays.asList(3, 2, 1, 0);
 	List<Integer> values2 = Arrays.asList(1, 0);
 	List<Integer> playersNb;
+	private World world;
 	
 	private int timer = 10;
 	
 	public TimerLaunching(BuildRush main) {
 		this.main = main;
+		this.displayHotBarMessage = new DisplayHotBarMessage(this.main);
+		playersNb = Arrays.asList(main.getPlayers().size(), main.getPlayers().size() -1);
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Override
 	public void run() {
-		if(timer == 3)  
-			playersNb = Arrays.asList(main.getPlayers().size(), main.getPlayers().size() -1);
-		
+		main.saveDefaultConfig();
 		for(Player players : main.getPlayers()) {
-			if(!values.contains(timer))displayHotbarMessage(players, "§6La partie se lance dans " + timer + "s", 20);
+			if(!values.contains(timer)) displayHotBarMessage.displayHotbarMessage(players, "§6La partie se lance dans " + timer + "s", 20);
 			else if(values.contains(timer)) {
 				if(timer !=0) {
 					players.playSound(players.getLocation(), Sound.ORB_PICKUP, 1f, 1f);
 					switch(timer) {
 						case 3: 
-								displayHotbarMessage(players, "§c3", 20);
+								displayHotBarMessage.displayHotbarMessage(players, "§c3", 20);
 								break;
 						case 2 : 
-								displayHotbarMessage(players, "§e2", 20);
+								displayHotBarMessage.displayHotbarMessage(players, "§e2", 20);
 								break;
 						case 1: 
-								displayHotbarMessage(players, "§a1", 20);
+								displayHotBarMessage.displayHotbarMessage(players, "§a1", 20);
 								break;
 						default:
 							break;
@@ -72,8 +76,17 @@ public class TimerLaunching extends BukkitRunnable{
 					}
 					
 					players.sendTitle("§cGo !","");
+					world = players.getWorld();
 					PlayerState.clearALL(players);
 					main.getPlayersStates().get(players).stuffLoad();
+					if(main.getBlueTeam().hasPlayer(players)) {
+						Location blueSpawn = new Location(players.getWorld(), main.getConfig().getDouble("spawn.blue.x"), main.getConfig().getDouble("spawn.blue.y"), main.getConfig().getDouble("spawn.blue.z"), (float) main.getConfig().getDouble("spawn.blue.pitch"), (float) main.getConfig().getDouble("spawn.blue.yaw"));
+						players.teleport(blueSpawn);
+					}
+					else if (main.getRedTeam().hasPlayer(players)) {
+						Location redSpawn = new Location(players.getWorld(), main.getConfig().getDouble("spawn.red.x"), main.getConfig().getDouble("spawn.red.y"), main.getConfig().getDouble("spawn.red.z"), (float) main.getConfig().getDouble("spawn.red.pitch"), (float) main.getConfig().getDouble("spawn.red.yaw"));
+						players.teleport(redSpawn);
+					}
 					players.playSound(players.getLocation(), Sound.ENDERDRAGON_GROWL, 1f, 1f);
 				}
 				if( values2.contains(main.getPlayers().size()) ||(!playersNb.contains(main.getPlayers().size()) && main.getNumberPerTeam() != 1)) {
@@ -83,6 +96,7 @@ public class TimerLaunching extends BukkitRunnable{
 			}
 		}
 		if(timer <= 0) {
+			addPnj(new Location(world, main.getConfig().getDouble("spawn.red.x"), main.getConfig().getDouble("spawn.red.y"), main.getConfig().getDouble("spawn.red.z"), (float) main.getConfig().getDouble("spawn.red.pitch"), (float) main.getConfig().getDouble("spawn.red.yaw")));
 			main.setGameCycle(GameCycle.PLAYING);
 			cancel();
 			TimerPlaying timerPlaying = new TimerPlaying(main);
@@ -90,20 +104,19 @@ public class TimerLaunching extends BukkitRunnable{
 		}
 		timer--;
 	}
-	
-	public void displayHotbarMessage(Player player, String message, int duration) {
-		String hotbarMessage = ChatColor.translateAlternateColorCodes('&', message);
 
-		CraftPlayer craftPlayer = (CraftPlayer) player;
-		ChatComponentText componentText = new ChatComponentText(hotbarMessage);
-		PacketPlayOutChat packet = new PacketPlayOutChat(componentText, (byte) 2);
+	private void addPnj(Location npcLocation) {
+        // Créez une entité PNJ (Villager dans cet exemple)
+        LivingEntity npc = (LivingEntity) npcLocation.getWorld().spawnEntity(npcLocation, EntityType.VILLAGER);
 
-		craftPlayer.getHandle().playerConnection.sendPacket(packet);
-
-		// Effacer le message après la durée spécifiée
-		main.getServer().getScheduler().runTaskLater(main, () -> {
-			PacketPlayOutChat clearPacket = new PacketPlayOutChat(new ChatComponentText(""), (byte) 2);
-			craftPlayer.getHandle().playerConnection.sendPacket(clearPacket);
-		}, duration);
-	}
+        // Assurez-vous que l'entité PNJ ne puisse pas être attaquée ou interagie avec le joueur
+        // Facultatif : Modifiez l'apparence ou le métier du PNJ
+        if (npc instanceof Villager) {
+            Villager villager = (Villager) npc;
+            villager.setProfession(Villager.Profession.LIBRARIAN);
+            villager.setCustomName("SHOP");
+            villager.setCustomNameVisible(true);
+            
+        }
+    }
 }

@@ -26,7 +26,7 @@ public class PlayerDoNotAction implements Listener {
 	@EventHandler
 	public void dontAttack(EntityDamageEvent event) {
 		if(gc.contains(main.getGameCycle())) {
-			//event.setCancelled(true);
+			event.setCancelled(true);
 		}
 	}
 	

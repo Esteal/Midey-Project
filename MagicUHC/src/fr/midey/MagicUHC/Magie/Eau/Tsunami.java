@@ -12,11 +12,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import fr.midey.MagicUHC.MagicUHC;
+import fr.midey.MagicUHC.Nature;
 
 public class Tsunami implements Listener {
 
 	private MagicUHC main;
-	
+	private Integer manaCost = 100;
 	
 	public Tsunami(MagicUHC main) {
 		this.main = main;
@@ -26,32 +27,36 @@ public class Tsunami implements Listener {
 	public void onTsunami(PlayerInteractEvent e) {
 		ItemStack it = e.getItem();
 		if(it == null) return;
-		//if(!main.game) return;
+		if(!main.game) return;
 		Player p = e.getPlayer();
-		//if(main.getPlayerNature().get(p).equals(Nature.Eau)) {
+		if(main.getPlayerNature().get(p).equals(Nature.Eau)) {
 			if(it.hasItemMeta() && it.getItemMeta().hasDisplayName() &&it.getItemMeta().getDisplayName().equalsIgnoreCase("§9Tsunami") && it.getType().equals(Material.NETHER_STAR)) {
-				Location ploc = p.getLocation();
-				Vector pvec = ploc.getDirection();
-				WaterCooldown cd = new WaterCooldown();
-				cd.cooldown = 10;
-				cd.multiplicateur = 3;
-				cd.task = Bukkit.getScheduler().runTaskTimer(main, () -> {
-					pvec.multiply(cd.multiplicateur);
-					cd.multiplicateur = cd.multiplicateur/1.25;
-					Double x = ploc.getX() + pvec.getX();
-					Double y = ploc.getY() + pvec.getY();
-					Double z = ploc.getZ() + pvec.getZ();
-					Location plocFinal = new Location(ploc.getWorld(), x, y, z, ploc.getYaw(), ploc.getPitch());
-					createSphere(plocFinal, 4, Material.WATER, Material.AIR, p);
-					Bukkit.getScheduler().runTaskLater(main, () -> {
-						createSphere(plocFinal, 6, Material.AIR, Material.WATER, p);
-				}, 5);
-				cd.cooldown--;
-				if(cd.cooldown<= 0) cd.task.cancel();
-				}, 0, 4);
-				
+				if(main.getPlayerMana().get(p) > manaCost) {
+					main.getPlayerMana().replace(p, main.getPlayerMana().get(p) - manaCost);
+					Location ploc = p.getLocation();
+					Vector pvec = ploc.getDirection();
+					WaterCooldown cd = new WaterCooldown();
+					cd.cooldown = 10;
+					cd.multiplicateur = 3;
+					cd.task = Bukkit.getScheduler().runTaskTimer(main, () -> {
+						pvec.multiply(cd.multiplicateur);
+						cd.multiplicateur = cd.multiplicateur/1.25;
+						Double x = ploc.getX() + pvec.getX();
+						Double y = ploc.getY() + pvec.getY();
+						Double z = ploc.getZ() + pvec.getZ();
+						Location plocFinal = new Location(ploc.getWorld(), x, y, z, ploc.getYaw(), ploc.getPitch());
+						createSphere(plocFinal, 4, Material.WATER, Material.AIR, p);
+						Bukkit.getScheduler().runTaskLater(main, () -> {
+							createSphere(plocFinal, 6, Material.AIR, Material.WATER, p);
+					}, 5);
+					cd.cooldown--;
+					if(cd.cooldown<= 0) cd.task.cancel();
+					}, 0, 4);
+				}
+				else
+					p.sendMessage("Il vous manque §e" + (manaCost - main.getPlayerMana().get(p)) + "§6 mana");
 			}
-		//}
+		}
 	}
 	
 	public void createSphere(Location center, int radius, Material to, Material from, Player player) {
@@ -65,7 +70,7 @@ public class Tsunami implements Listener {
 					if (center.distance(new Location(world, x, y, z)) <= radius) {
 						// Vérifier si le bloc est de type AIR, pour éviter de remplacer les blocs existants
 						if (world.getBlockAt(x, y, z).getType() == from) {
-							// Définir le bloc à la position actuelle comme étant de la terre
+							// Définir le bloc à la position actuelle comme étant de l'eau
 							cd.followLocation(x, y, z, center, player, 1, 1.25);
 							world.getBlockAt(x, y, z).setType(to);
 						}

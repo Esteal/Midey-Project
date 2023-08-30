@@ -32,7 +32,7 @@ public class Spell1 implements Listener {
 		
 		if(it.getType() == Material.STICK) {
 			Player p = e.getPlayer();
-			EnumParticle particle = EnumParticle.REDSTONE;
+			EnumParticle particle = EnumParticle.CLOUD;
 			Location targetLocation = spawnBlock(p, 15);
 			Cooldown cd = new Cooldown();
 			cd.loc = targetLocation;
@@ -56,7 +56,7 @@ public class Spell1 implements Listener {
 			}, 20, 2);
 			Location line = circleLoc.clone();
 			line.setY(line.getY() + radius);
-			lineDown(line, EnumParticle.SPELL_MOB);
+			lineDown(line, EnumParticle.CLOUD);
 		}
 	}
 	
@@ -168,7 +168,7 @@ public class Spell1 implements Listener {
 	        double y = center.getY() + radius * Math.cos(theta);
 	        double z = center.getZ();
 	        Location particleLocation = new Location(world, x, y, z);
-	        packetParticuleSender(particle, particleLocation, 0.1f, 1f, 0f, 1f, 0);
+	        packetParticuleSender(particle, particleLocation);
 	    }
 	}
 	
@@ -179,7 +179,7 @@ public class Spell1 implements Listener {
 		cd.task = Bukkit.getScheduler().runTaskTimer(main, () -> {
 			for(int i = 10; i>=0; i--) {
 				center.setY(center.getY()-0.2);
-				packetParticuleSender(particle, center, 1, -1, 1, 10, 0);	
+				packetParticuleSender(particle, center);	
 				if(center.getBlock().getType() != Material.AIR)
 				{
 					packetParticuleSender(EnumParticle.EXPLOSION_HUGE, center);

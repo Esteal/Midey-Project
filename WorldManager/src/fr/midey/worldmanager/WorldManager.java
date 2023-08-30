@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 
@@ -62,10 +61,6 @@ public class WorldManager {
 			return;
 		}
 		Bukkit.unloadWorld(worldName, false);
-		try {
-			FileUtils.deleteDirectory(file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 	}
 }

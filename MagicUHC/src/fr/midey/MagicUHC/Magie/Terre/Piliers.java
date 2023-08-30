@@ -18,7 +18,8 @@ import fr.midey.MagicUHC.Nature;
 public class Piliers implements Listener {
 
 	private MagicUHC main;
-	
+	private Integer manaCost = 100;
+
 	public Piliers(MagicUHC main) {
 		this.main = main;
 	}
@@ -31,23 +32,28 @@ public class Piliers implements Listener {
 		Player p = e.getPlayer();
 		if(main.getPlayerNature().get(p).equals(Nature.Terre)) {
 			if(it.hasItemMeta() && it.getItemMeta().hasDisplayName() &&it.getItemMeta().getDisplayName().equalsIgnoreCase("§6Pilier de pierre") && it.getType().equals(Material.NETHER_STAR)) {
-				Location loc = p.getLocation();
-				Vector v = loc.getDirection();
-				v.multiply(8);
-				loc.add(v);
-				while(loc.getBlock().getType() == Material.AIR) {
-					loc.setY(loc.getBlockY()-1);
-					if(loc.getBlockY() <= 0) break;
-				}
-				loc.add(0, -1, 0);
-				Material[] mat = { Material.STONE, Material.COBBLESTONE, Material.COBBLE_WALL, Material.GRAVEL };
-				Vector newVec = p.getLocation().getDirection().multiply(2.5).setY(2);
-				for(Player ps : Bukkit.getOnlinePlayers()) {
-					if(isPlayerNearPillar(ps, loc, 3)) {
-						ps.setVelocity(newVec);
+				if(main.getPlayerMana().get(p) > manaCost) {
+					main.getPlayerMana().replace(p, main.getPlayerMana().get(p) - manaCost);
+					Location loc = p.getLocation();
+					Vector v = loc.getDirection();
+					v.multiply(8);
+					loc.add(v);
+					while(loc.getBlock().getType() == Material.AIR) {
+						loc.setY(loc.getBlockY()-1);
+						if(loc.getBlockY() <= 0) break;
 					}
+					loc.add(0, -1, 0);
+					Material[] mat = { Material.STONE, Material.COBBLESTONE, Material.COBBLE_WALL, Material.GRAVEL };
+					Vector newVec = p.getLocation().getDirection().multiply(2.5).setY(2);
+					for(Player ps : Bukkit.getOnlinePlayers()) {
+						if(isPlayerNearPillar(ps, loc, 3)) {
+							ps.setVelocity(newVec);
+						}
+					}
+					generatePillar(loc, 9, mat);
 				}
-				generatePillar(loc, 9, mat);
+				else
+					p.sendMessage("Il vous manque §e" + (manaCost - main.getPlayerMana().get(p)) + "§6 mana");
 			}
 		}
 		return;

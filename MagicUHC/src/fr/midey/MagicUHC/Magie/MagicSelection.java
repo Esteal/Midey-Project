@@ -24,7 +24,7 @@ public class MagicSelection {
 			MagicItems its = null;
 			switch(main.getPlayerNature().get(p)) {
 				case Air:
-					its = new MagicItems("§bLame de vent", "§bMur de vent", "§bEnvolé céleste");
+					its = new MagicItems("§bBourrasque", "§bOuragan", "§bEnvolé céleste");
 					break;
 				case Eau:
 					its = new MagicItems("§9Tsunami", "§9Geyser", "§9Dash aquatique");

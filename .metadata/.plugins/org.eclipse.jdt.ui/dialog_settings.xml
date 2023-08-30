@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<item key="org.eclipse.jdt.ui.last.selected.jre.kind2" value="2"/>
-	<item key="org.eclipse.jdt.ui.last.selected.execution.enviroment" value="JavaSE-1.8"/>
+	<item key="org.eclipse.jdt.ui.last.selected.execution.enviroment" value="JavaSE-16"/>
 	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Dev\Minecraft\Spigot"/>
 	<item key="TypeHierarchyViewPart.hierarchyview" value="2"/>
 	<item key="TypeHierarchyViewPart.qualifiednames" value="false"/>
@@ -71,10 +71,12 @@
 		<item key="JarManifestWizardPage.MANIFEST_LOCATION" value=""/>
 		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
-			<item value="C:\Users\esteb\OneDrive\Bureau\BuildRush\plugins\BuildRush.jar"/>
-			<item value="C:\Users\esteb\Desktop\serveur local (BuildRush)\plugins\BuildRush.jar"/>
-			<item value="C:\Users\esteb\OneDrive\Bureau\Zilconis\plugins\Zilconis.jar"/>
+			<item value="C:\Users\esteb\OneDrive\Bureau\One Piece\plugins\OnePieceCraft.jar"/>
 			<item value="C:\Users\esteb\OneDrive\Bureau\Uhc meetup\plugins\MagicUHC.jar"/>
+			<item value="C:\Users\esteb\OneDrive\Bureau\BuildRush\plugins\BuildRush.jar"/>
+			<item value="C:\Users\esteb\OneDrive\Bureau\Zilconis\plugins\Zilconis.jar"/>
+			<item value="C:\Users\esteb\OneDrive\Bureau\BuildRush\plugins\WorldManager.jar"/>
+			<item value="C:\Users\esteb\Desktop\serveur local (BuildRush)\plugins\BuildRush.jar"/>
 			<item value="C:\Users\esteb\Desktop\serveur local  (uhc meetup2)\plugins\MagicUHC.jar"/>
 			<item value="C:\Users\esteb\Desktop\serveur local  (uhc meetup2)\plugins\Plugin UHC Meetup.jar"/>
 			<item value="C:\Users\esteb\OneDrive\Bureau\Uhc meetup\plugins\UHC magic.jar"/>
@@ -89,8 +91,6 @@
 			<item value="C:\Users\esteb\Desktop\serveur local (Clash Royale)\plugins\CraftRoyale.jar"/>
 			<item value="C:\Users\esteb\Desktop\serveur local (Clash Royale)\plugins\nefa.jar"/>
 			<item value="C:\Users\esteb\Desktop\serveur local (nefazia)\plugins\CraftRoyale.jar"/>
-			<item value="C:\Users\esteb\Desktop\serveur local (SpellMaker)\plugins\spellMaker.jar"/>
-			<item value="C:\Users\esteb\Desktop\serveur local  (uhc meetup2)\plugins\UhcMeetup.jar"/>
 		</list>
 	</section>
 	<section name="JavaSearchPage">
@@ -99,8 +99,8 @@
 		<item key="HISTORY_SIZE" value="0"/>
 	</section>
 	<section name="org.eclipse.jdt.internal.ui.typehierarchy.QuickHierarchy">
-		<item key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_WIDTH" value="450"/>
-		<item key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_HEIGHT" value="380"/>
+		<item key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_WIDTH" value="500"/>
+		<item key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_HEIGHT" value="440"/>
 		<item key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_USE_PERSISTED_SIZE" value="true"/>
 		<item key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_USE_PERSISTED_LOCATION" value="false"/>
 	</section>

@@ -11,11 +11,13 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import fr.midey.MagicUHC.MagicUHC;
+import fr.midey.MagicUHC.Nature;
 
 public class Geyser implements Listener {
 
 	private MagicUHC main;
-	
+	private Integer manaCost = 100;
+
 	public Geyser(MagicUHC main) {
 		this.main = main;
 	}
@@ -24,29 +26,34 @@ public class Geyser implements Listener {
 	public void onGeyser(PlayerInteractEvent e) {
 		ItemStack it = e.getItem();
 		if(it == null) return;
-		//if(!main.game) return;
+		if(!main.game) return;
 		Player p = e.getPlayer();
-		//if(main.getPlayerNature().get(p).equals(Nature.Eau)) {
+		if(main.getPlayerNature().get(p).equals(Nature.Eau)) {
 			if(it.hasItemMeta() && it.getItemMeta().hasDisplayName() &&it.getItemMeta().getDisplayName().equalsIgnoreCase("§9Geyser") && it.getType().equals(Material.NETHER_STAR)) {
-				Location ploc = p.getLocation();
-				WaterCooldown cd = new WaterCooldown();
-				cd.cooldown = 10;
-				cd.task = Bukkit.getScheduler().runTaskTimer(main, () -> {
-					Double x = (double) ploc.getBlockX();
-					Double y = (double) ploc.getBlockY();
-					Double z = (double) ploc.getBlockZ();
-					
-					Location plocFinal = new Location(ploc.getWorld(), x, y, z, ploc.getYaw(), ploc.getPitch());
-					createColonne(plocFinal, 4, Material.WATER, Material.AIR, p);
-					Bukkit.getScheduler().runTaskLater(main, () -> {
-						createColonne(plocFinal, 6, Material.AIR, Material.WATER, p);
-				}, 3);
-				ploc.setY(ploc.getY() + 1);
-				cd.cooldown--;
-				if(cd.cooldown<= 0) cd.task.cancel();
-				}, 0, 0);
+				if(main.getPlayerMana().get(p) > manaCost) {
+					main.getPlayerMana().replace(p, main.getPlayerMana().get(p) - manaCost);
+					Location ploc = p.getLocation();
+					WaterCooldown cd = new WaterCooldown();
+					cd.cooldown = 10;
+					cd.task = Bukkit.getScheduler().runTaskTimer(main, () -> {
+						Double x = (double) ploc.getBlockX();
+						Double y = (double) ploc.getBlockY();
+						Double z = (double) ploc.getBlockZ();
+						
+						Location plocFinal = new Location(ploc.getWorld(), x, y, z, ploc.getYaw(), ploc.getPitch());
+						createColonne(plocFinal, 4, Material.WATER, Material.AIR, p);
+						Bukkit.getScheduler().runTaskLater(main, () -> {
+							createColonne(plocFinal, 6, Material.AIR, Material.WATER, p);
+					}, 3);
+					ploc.setY(ploc.getY() + 1);
+					cd.cooldown--;
+					if(cd.cooldown<= 0) cd.task.cancel();
+					}, 0, 0);
+				}
+				else
+					p.sendMessage("Il vous manque §e" + (manaCost - main.getPlayerMana().get(p)) + "§6 mana");
 			}
-		//}
+		}
 	}
 	
 	public void createColonne(Location center, int radius, Material to, Material from, Player player) {

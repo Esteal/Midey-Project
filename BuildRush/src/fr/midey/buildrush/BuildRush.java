@@ -14,6 +14,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 import fr.midey.buildrush.PLAYING.PlayerKillAnotherPlayer;
+import fr.midey.buildrush.Player.CheckLocation;
 import fr.midey.buildrush.Player.FoodListener;
 import fr.midey.buildrush.Player.States;
 import fr.midey.buildrush.ScoreBoardManager.ScoreboardManager;
@@ -28,26 +29,32 @@ public class BuildRush extends JavaPlugin{
 	private static BuildRush instance;
 	private GameCycle gameCycle; //Permet de gérer les différentes phases du jeu
 	private List<Player> players; //Contient les joueurs qui jouent
-	PlayerManager plm;
-	private int numberPerTeam = 1; //Définit le nombre de joueur par équipe
+	private PlayerManager plm;
+	private int numberPerTeam; //Définit le nombre de joueur par équipe
 	private HashMap<Player, States> playersStates; //Divers stats du joueur visible dans la classe States
-	Scoreboard scoreboard ; //Scoreboard
+	private Scoreboard scoreboard ; //Scoreboard
 	private ScoreboardManager scoreboardManager; //Déclaration du scoreboard
 	private ScheduledExecutorService executorMonoThread; //Lié au scoreboard
 	private ScheduledExecutorService scheduledExecutorService; //Lié au scoreboard
 	private String gameTime = "00:00:00"; //timer du scoreboard
     private Team redTeam; //red team
     private Team blueTeam; //blue team
+    private Team loserTeam; //Team perdante
     private String redKill = "0";
     private String blueKill = "0";
-    private int killObjective = 20; //nombre de kill à atteindre pour gagner la partie
+    private int killObjective; //nombre de kill à atteindre pour gagner la partie
     private boolean gameEnding = false;
 
 	@Override
 	public void onEnable() {
 		instance = this;
 		setGameCycle(GameCycle.WAITING); //Met le mode de jeu dans sa phase d'attente
-
+		saveDefaultConfig();
+		
+		//Recup des infos venant de la config
+		killObjective = getConfig().getInt("killObjective");
+		numberPerTeam = getConfig().getInt("playerParTeam");
+		
 		players = new ArrayList<>();
 		playersStates = new HashMap<Player, States>();
 		//Permet de lancer le SCOREBOARD et d'initialiser les teams bleues et rouges
@@ -55,9 +62,9 @@ public class BuildRush extends JavaPlugin{
 		executorMonoThread = Executors.newScheduledThreadPool(1);
 		scoreboardManager = new ScoreboardManager();
 		scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
-		blueTeam = doTeam("Bleue", "§9");
-		redTeam = doTeam("Rouge", "§c");
-
+		blueTeam = doTeam("Bleue", "§9Bleue");
+		redTeam = doTeam("Rouge", "§cRouge");
+		
 		PluginManager pm = getServer().getPluginManager();
 		//Package Player
 		pm.registerEvents(new FoodListener(), this);
@@ -74,6 +81,9 @@ public class BuildRush extends JavaPlugin{
 		plm = new PlayerManager(this);
 		for(Player player : Bukkit.getOnlinePlayers())
 			plm.doGestionEnable(player);
+		
+		CheckLocation checkLocation = new CheckLocation(this);
+		checkLocation.runTaskTimer(this, 0, 10);
 	}
 	
 	@Override
@@ -136,5 +146,13 @@ public class BuildRush extends JavaPlugin{
 		team.setPrefix(prefix);
 		team.setAllowFriendlyFire(false);
 		return team;
+	}
+
+	public Team getLoserTeam() {
+		return loserTeam;
+	}
+
+	public void setLoserTeam(Team loserTeam) {
+		this.loserTeam = loserTeam;
 	}
 }

@@ -2,6 +2,8 @@
 <section name="Workbench">
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="OnePieceCraft"/>
+			<item value="WorldManager"/>
 			<item value="Zilconis"/>
 			<item value="BuildRush"/>
 			<item value="UhcMeetup2"/>
@@ -12,6 +14,8 @@
 			<item value="MagicUHC"/>
 		</list>
 		<list key="artifactId">
+			<item value="OnePieceCraft"/>
+			<item value="WorldManager"/>
 			<item value="Zilconis"/>
 			<item value="BuildRush"/>
 			<item value="UhcMeetup2"/>

@@ -21,7 +21,8 @@ import fr.midey.MagicUHC.Nature;
 public class Seisme implements Listener {
 
 	private MagicUHC main;
-	
+	private Integer manaCost = 100;
+
 	public Seisme(MagicUHC main) {
 		this.main = main;
 	}
@@ -34,9 +35,14 @@ public class Seisme implements Listener {
 		Player p = e.getPlayer();
 		if(main.getPlayerNature().get(p).equals(Nature.Terre)) {
 			if(it.hasItemMeta() && it.getItemMeta().hasDisplayName() &&it.getItemMeta().getDisplayName().equalsIgnoreCase("§6Séisme") && it.getType().equals(Material.NETHER_STAR)) {
-				Location loc = p.getLocation();
-				p.playSound(loc, Sound.EXPLODE, 1f, 1f);
-				removeBlocksAroundPlayer(p);
+				if(main.getPlayerMana().get(p) > manaCost) {
+					main.getPlayerMana().replace(p, main.getPlayerMana().get(p) - manaCost);
+					Location loc = p.getLocation();
+					p.playSound(loc, Sound.EXPLODE, 1f, 1f);
+					removeBlocksAroundPlayer(p);
+				}
+				else
+					p.sendMessage("Il vous manque §e" + (manaCost - main.getPlayerMana().get(p)) + "§6 mana");
 			}
 		}
 	}

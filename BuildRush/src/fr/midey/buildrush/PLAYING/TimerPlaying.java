@@ -4,6 +4,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.midey.buildrush.BuildRush;
 import fr.midey.buildrush.GameCycle;
+import fr.midey.buildrush.ENDING.TimerEnding;
 
 public class TimerPlaying extends BukkitRunnable{
 
@@ -33,6 +34,8 @@ public class TimerPlaying extends BukkitRunnable{
 			}
 		}
 		if(main.isGameEnding()) {
+			TimerEnding timerEnding = new TimerEnding(main);
+			timerEnding.runTaskTimer(main, 0, 20);
 			main.setGameCycle(GameCycle.ENDING);
 			cancel();
 		}

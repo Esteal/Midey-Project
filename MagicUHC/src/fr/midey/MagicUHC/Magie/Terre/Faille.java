@@ -20,6 +20,7 @@ import fr.midey.MagicUHC.Nature;
 public class Faille implements Listener {
 
 	private MagicUHC main;
+	private Integer manaCost = 100;
 
 	public Faille(MagicUHC main) {
 		this.main = main;
@@ -33,7 +34,12 @@ public class Faille implements Listener {
 		Player p = e.getPlayer();
 		if(main.getPlayerNature().get(p).equals(Nature.Terre)) {
 			if(it.hasItemMeta() && it.getItemMeta().hasDisplayName() &&it.getItemMeta().getDisplayName().equalsIgnoreCase("§6Choc sismique") && it.getType().equals(Material.NETHER_STAR)) {
-				breakBlocksAroundPlayer(p);
+				if(main.getPlayerMana().get(p) > manaCost) {
+					main.getPlayerMana().replace(p, main.getPlayerMana().get(p) - manaCost);
+					breakBlocksAroundPlayer(p);
+				}
+				else
+					p.sendMessage("Il vous manque §e" + (manaCost - main.getPlayerMana().get(p)) + "§6 mana");
 			}
 		}
 	}

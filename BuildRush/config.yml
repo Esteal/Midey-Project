@@ -1,0 +1,22 @@
+playerParTeam: 1
+killObjective: 12
+killCouch: 70
+spawn:
+  hub:
+    x: 0.0
+    y: 80.0
+    z: 0.0
+    pitch: 90
+    yaw: 0.0
+  red:
+    x: 10.0
+    y: 80.0
+    z: 10.0
+    pitch: 90.0
+    yaw: 0.0
+  blue:
+    x: -10.0
+    y: 80.0
+    z: 10.0
+    pitch: -90.0
+    yaw: 0.0

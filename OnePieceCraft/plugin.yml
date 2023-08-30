@@ -1,0 +1,7 @@
+name: OnePieceCraft
+version: 1
+author: Midey
+main: fr.midey.onepiececraft.OnePieceCraft
+commands:
+  f:
+    description: commandes liees au faction

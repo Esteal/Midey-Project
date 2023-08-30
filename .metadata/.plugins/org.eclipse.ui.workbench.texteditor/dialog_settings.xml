@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="get"/>
+		<item key="selection" value="DbManager"/>
 		<list key="findhistory">
+			<item value="dbManager"/>
+			<item value="v"/>
+			<item value="player"/>
 			<item value="get"/>
 			<item value="getC"/>
 			<item value="rece"/>
@@ -20,11 +23,9 @@
 			<item value="updateDisplay"/>
 			<item value="depen"/>
 			<item value="spigot"/>
-			<item value="crystalNeutre"/>
-			<item value="beskarChestplateRecipe"/>
-			<item value="beskarHelmetRecipe"/>
 		</list>
 		<list key="replacehistory">
+			<item value="centerLocation"/>
 			<item value="crystalGreen"/>
 			<item value="crystalBlue"/>
 			<item value="crystalRed"/>

@@ -21,7 +21,7 @@ public class FireCooldown {
 	BukkitTask task2;
 	public void packetParticuleSender(double x, double y, double z, EnumParticle particle, Location loc) {
 		for(Player player : Bukkit.getOnlinePlayers()) {
-			if(player.getLocation().distance(loc) > 30) continue;
+			if(player.getLocation().distance(loc) > 100) continue;
 			PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles(particle, true, (float) x, (float) y, (float) z, 0, 0, 0, 0, 1);
 			((CraftPlayer)player).getHandle().playerConnection.sendPacket(packet);
 		}
