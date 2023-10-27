@@ -1,0 +1,8 @@
+name: NefaziaAtouts
+version: 1
+author: Midey
+main: fr.midey.NefaziaAtouts.Atouts
+api-version: 1.18
+commands:
+  atouts:
+    use : /atouts [speed/force/fireres/nofall/norod/anticleanup] [enable/disable]

@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="DbManager"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="plugin"/>
 			<item value="dbManager"/>
 			<item value="v"/>
 			<item value="player"/>
@@ -22,7 +23,6 @@
 			<item value="VTeam"/>
 			<item value="updateDisplay"/>
 			<item value="depen"/>
-			<item value="spigot"/>
 		</list>
 		<list key="replacehistory">
 			<item value="centerLocation"/>

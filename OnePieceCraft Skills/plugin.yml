@@ -1,0 +1,11 @@
+name: OnePieceCraftSkills
+version: 1
+author: Midey
+main: fr.midey.OnePieceCraftSkills.OnePieceCraftSkills
+api-version: 1.18
+commands:
+  opc:
+    description: Commandes principales pour gerer les competences, niveaux et hakis des joueurs
+    permission: opc.use
+  haki:
+    description: Commandes principales pour gerer le haki on ou off
