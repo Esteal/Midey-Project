@@ -24,8 +24,10 @@ import org.bukkit.util.Vector;
 
 import fr.midey.OnePieceCraftSkills.OnePieceCraftSkills;
 import fr.midey.OnePieceCraftSkills.PlayerData;
+import fr.midey.OnePieceCraftSkills.Endurance.EnduranceManager;
 import fr.midey.OnePieceCraftSkills.Weapons.SkillHighRank.DemonSlash;
 import fr.midey.OnePieceCraftSkills.Weapons.SkillHighRank.FlambageShot;
+import fr.midey.OnePieceCraftSkills.Weapons.SkillLowRank.Incision;
 import fr.midey.OnePieceCraftSkills.Weapons.SkillLowRank.Slash;
 
 public class CheckSkill implements Listener{
@@ -38,6 +40,7 @@ public class CheckSkill implements Listener{
     private int demonSlashCost = 65, demonSlashSurchauffe = 45; // Cout : 65 | surchauffe si moins de 45 d'endurance
     private int slashCost = 30, slashSurchauffe = 15; // Cout : 65 | surchauffe si moins de 15 d'endurance
     private int flambageShotCost = 65, flambageShotSurchauffe = 45; // Cout : 65 | surchauffe si moins de 45 d'endurance
+    private int incisionCost = 20, incisionShotSurchauffe = 10; // Cout : 65 | surchauffe si moins de 45 d'endurance
     
 	public CheckSkill(OnePieceCraftSkills plugin) {
         this.plugin = plugin;
@@ -70,61 +73,83 @@ public class CheckSkill implements Listener{
 	 }
 	 
 	 private void executeWeaponSkill(Player player, PlayerData playerData, String level) {
-		 String skill;
-		 
-		 if (level.equalsIgnoreCase("high")) skill = playerData.getWeaponSkillHigh();
-		 else skill = playerData.getWeaponSkillLow();
+		    // Déterminer la compétence en fonction du niveau
+		    String skill = getWeaponSkillBasedOnLevel(playerData, level);
+		    
+		    if (skill == null) {
+		        player.sendMessage(ChatColor.RED + "➤ " + ChatColor.GRAY + "Aucune compétence d'arme sélectionnée");
+		        return;
+		    }
 
-		 if (skill == null) {
-			 player.sendMessage(ChatColor.RED + "➤ " + ChatColor.GRAY + "Aucune compétence d'arme sélectionnée");
-			 return;
-		 }
+		    EnduranceManager enduranceManager = plugin.getEnduranceManager();
 
-		 switch (skill) {
-		 
-			 case "slash":
-				 if (plugin.getEnduranceManager().canUseSkill(player, slashSurchauffe) && !plugin.getPlayerData(player).isInCooldown()) {
-					 
-					 Slash slash = new Slash(plugin, this);
-					 slash.createSlash(player, 3, playerData.getWeaponPoints(), playerData.getDirectionLowSkill()); //Créer le slash
-					 plugin.getEnduranceManager().useEndurance(player, slashCost); //Consomme l'endurance
-					 playerData.setDirectionLowSkill(playerData.getDirectionLowSkill() * -1); //Inverse la direction pour le prochain slash
-					 
-				 } else if (!plugin.getPlayerData(player).isInCooldown())
-					 putInCooldown(player);
-				 break;
-				 
-			 case "pas de lune":
-				 //pas de lune est entierement gere par sa classe
-				 break;
-				 
-			 case "demon slash":
-				 if (plugin.getEnduranceManager().canUseSkill(player, demonSlashSurchauffe) && !plugin.getPlayerData(player).isInCooldown()) {
-					 
-					 DemonSlash demonSlash = new DemonSlash(plugin, this);
-					 demonSlash.demonSlash(player);
-					 plugin.getEnduranceManager().useEndurance(player, demonSlashCost); //Consomme l'endurance 
-					 
-				 } else if (!plugin.getPlayerData(player).isInCooldown())
-					 putInCooldown(player);
-				 break;
-			 
-			 case "flambage shoot":
-				if (plugin.getEnduranceManager().canUseSkill(player, flambageShotSurchauffe) && !plugin.getPlayerData(player).isInCooldown()) {
-					 
-					FlambageShot flambageShot = new FlambageShot(plugin, this);
-				 	flambageShot.flambageShot(player);
-					 plugin.getEnduranceManager().useEndurance(player, flambageShotCost); //Consomme l'endurance 
-					 
-				 } else if (!plugin.getPlayerData(player).isInCooldown())
-					 putInCooldown(player);
-				 	
-				 break;
-			 default:
-				 player.sendMessage(ChatColor.RED + "➤ " + ChatColor.GRAY + "Compétence invalide, veuillez contacter un administrateur");
-				 break;
-		 }
-	 }
+		    switch (skill) {
+		        case "slash":
+		            executeSlashSkill(player, playerData, enduranceManager);
+		            break;
+		        case "pas de lune":
+		            // pas de lune est entièrement géré par sa classe
+		            break;
+		        case "demon slash":
+		            executeDemonSlashSkill(player, playerData, enduranceManager);
+		            break;
+		        case "flambage shoot":
+		            executeFlambageShotSkill(player, playerData, enduranceManager);
+		            break;
+		        case "incision":
+		            executeIncisionSkill(player, playerData, enduranceManager);
+		            break;
+		        default:
+		            player.sendMessage(ChatColor.RED + "➤ " + ChatColor.GRAY + "Compétence invalide, veuillez contacter un administrateur");
+		            break;
+		    }
+		}
+
+		private String getWeaponSkillBasedOnLevel(PlayerData playerData, String level) {
+		    if (level.equalsIgnoreCase("high")) return playerData.getWeaponSkillHigh();
+		    return playerData.getWeaponSkillLow();
+		}
+
+		private void executeSlashSkill(Player player, PlayerData playerData, EnduranceManager enduranceManager) {
+		    if (canExecuteSkill(enduranceManager, player, slashSurchauffe)) {
+		        Slash slash = new Slash(plugin, this);
+		        slash.createSlash(player, 3, playerData.getWeaponPoints(), playerData.getDirectionLowSkill());
+		        enduranceManager.useEndurance(player, slashCost);
+		        playerData.setDirectionLowSkill(playerData.getDirectionLowSkill() * -1);
+		    }
+		}
+
+		private void executeDemonSlashSkill(Player player, PlayerData playerData, EnduranceManager enduranceManager) {
+		    if (canExecuteSkill(enduranceManager, player, demonSlashSurchauffe)) {
+		        DemonSlash demonSlash = new DemonSlash(plugin, this);
+		        demonSlash.demonSlash(player);
+		        enduranceManager.useEndurance(player, demonSlashCost);
+		    }
+		}
+
+		private void executeFlambageShotSkill(Player player, PlayerData playerData, EnduranceManager enduranceManager) {
+		    if (canExecuteSkill(enduranceManager, player, flambageShotSurchauffe)) {
+		        FlambageShot flambageShot = new FlambageShot(plugin, this);
+		        flambageShot.flambageShot(player);
+		        enduranceManager.useEndurance(player, flambageShotCost);
+		    }
+		}
+
+		private void executeIncisionSkill(Player player, PlayerData playerData, EnduranceManager enduranceManager) {
+		    if (canExecuteSkill(enduranceManager, player, incisionShotSurchauffe)) {
+		        enduranceManager.useEndurance(player, incisionCost);
+		        Incision incision = new Incision(plugin);
+		        incision.incision(player);
+		    }
+		}
+
+		private boolean canExecuteSkill(EnduranceManager enduranceManager, Player player, int surchauffe) {
+		    if (!enduranceManager.canUseSkill(player, surchauffe) || plugin.getPlayerData(player).isInCooldown()) {
+		        putInCooldown(player);
+		        return false;
+		    }
+		    return true;
+		}
 	
 	public void putInCooldown(Player player) {
  		player.sendMessage(ChatColor.RED + "➤ " + ChatColor.GRAY + "Votre corps a surchauffé, vous aurez besoin de temps pour vous en remettre.");	

@@ -27,7 +27,6 @@
     <fullyQualifiedTypeName name="org.bukkit.event.block.Action"/>
     <fullyQualifiedTypeName name="org.bukkit.event.EventException"/>
     <fullyQualifiedTypeName name="org.apache.commons.lang.NullArgumentException"/>
-    <fullyQualifiedTypeName name="org.bukkit.Sound"/>
     <fullyQualifiedTypeName name="org.bukkit.EntityEffect"/>
     <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
     <fullyQualifiedTypeName name="net.md_5.bungee.api.ChatMessageType"/>
@@ -54,10 +53,11 @@
     <fullyQualifiedTypeName name="org.bukkit.entity.Player.Spigot"/>
     <fullyQualifiedTypeName name="org.bukkit.event.Listener"/>
     <fullyQualifiedTypeName name="org.bukkit.entity.Player"/>
-    <fullyQualifiedTypeName name="org.bukkit.Location"/>
-    <fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
     <fullyQualifiedTypeName name="org.bukkit.Bukkit"/>
     <fullyQualifiedTypeName name="org.bukkit.scheduler.BukkitRunnable"/>
     <fullyQualifiedTypeName name="org.bukkit.World"/>
+    <fullyQualifiedTypeName name="org.bukkit.Location"/>
+    <fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
     <fullyQualifiedTypeName name="org.bukkit.Particle"/>
+    <fullyQualifiedTypeName name="org.bukkit.Sound"/>
 </qualifiedTypeNameHistroy>

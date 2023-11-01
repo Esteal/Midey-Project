@@ -71,7 +71,7 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
         this.entityTouchByWeaponSkill_1 = new ArrayList<LivingEntity>();
         this.entityTouchByWeaponSkill_2 = new ArrayList<LivingEntity>();
         highSkills = Arrays.asList("demon slash", "flambage shoot");
-        lowSkills = Arrays.asList("slash", "pas de lune");
+        lowSkills = Arrays.asList("slash", "pas de lune", "incision");
         swordSkills = Arrays.asList("slash", "demon slash");
         this.airAndFlowers = Arrays.asList(
         	    Material.AIR,  Material.CAVE_AIR,  Material.VOID_AIR, Material.DANDELION,
