@@ -58,6 +58,7 @@ public class EnduranceManager {
         int barLength = 50;
         int fill = (int) ((endurance / 100.0) * barLength);
         StringBuilder bar = new StringBuilder();
+        bar.append("§lEndurance :§r ");
         bar.append(ChatColor.GREEN);
         for (int i = 0; i < fill; i++) {
             bar.append('|');
@@ -66,7 +67,6 @@ public class EnduranceManager {
         for (int i = fill; i < barLength; i++) {
             bar.append('|');
         }
-        
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(bar.toString()));
     }
 }

@@ -71,6 +71,7 @@
 		<item key="JarManifestWizardPage.MANIFEST_LOCATION" value=""/>
 		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\esteb\Desktop\serveur local (onepicecraft)\plugins\OnePieceCraft.jar"/>
 			<item value="C:\Users\esteb\OneDrive\Bureau\One Piece\plugins\OnePieceCraft.jar"/>
 			<item value="C:\Users\esteb\OneDrive\Bureau\One Piece\plugins\NefaziaAtouts.jar"/>
 			<item value="C:\Users\esteb\OneDrive\Bureau\Uhc meetup\plugins\MagicUHC.jar"/>
@@ -90,7 +91,6 @@
 			<item value="C:\Users\esteb\Desktop\serveur local (nefazia)\plugins\Test.jar"/>
 			<item value="C:\Users\esteb\Desktop\serveur local\plugins\PvpBox.jar"/>
 			<item value="C:\Users\esteb\Desktop\serveur local (Clash Royale)\plugins\CraftRoyale.jar"/>
-			<item value="C:\Users\esteb\Desktop\serveur local (Clash Royale)\plugins\nefa.jar"/>
 		</list>
 	</section>
 	<section name="JavaSearchPage">

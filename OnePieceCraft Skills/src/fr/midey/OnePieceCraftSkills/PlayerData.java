@@ -3,24 +3,32 @@ package fr.midey.OnePieceCraftSkills;
 import java.util.UUID;
 
 public class PlayerData {
+	
 	private UUID uuid;
-    private int hakiArmement = 0;
+    
+	private int hakiArmement = 0;
     private int hakiRoi = 0;
     private int hakiObservation = 0;
-    private int weaponPoints = 0;
-    private String weaponSkillLow = "";
-    private String weaponSkillHigh = "";
-    private int experience = 0;
-    private int level = 0;
-    private int skillPoints = 0;
-    private int directionLowSkill = 1; //1 -> left to right | -1 -> right to left
-    private int endurance = 0;
+    private long cooldownsHakiRoi;
     private boolean observationHakiActive = false;
     private boolean hakiRoiActive = false;
     private long cooldownsHakiArmement = 0;
-    private long cooldownsHakiRoi;
-	private int experienceToNextLevel = 0;
-	private boolean isInCooldown = false;
+    private long cooldownFailSequence = 0;
+    
+    private String sequence = ""; //Stock les cliques de souris pour activer des compétences
+    
+    private int experience = 0;
+    private int experienceToNextLevel = 0;
+    private int level = 0;
+    private int skillPoints = 0;
+    private int weaponPoints = 0;
+    
+    private String weaponSkillLow = "";
+    private String weaponSkillHigh = "";
+    private int directionLowSkill = 1; //1 -> left to right | -1 -> right to left
+    private int endurance = 0;
+	
+    private boolean isInCooldown = false;
 	private boolean isInDemonSlash = false;
 
     // Getters et setters
@@ -80,5 +88,11 @@ public class PlayerData {
 	
 	public boolean isInDemonSlash() { return isInDemonSlash; }
 	public void setInDemonSlash(boolean isInDemonSlash) { this.isInDemonSlash = isInDemonSlash; }
+	
+	public String getSequence() { return sequence; }
+	public void setSequence(String sequence) { this.sequence = sequence; }
+	
+	public long getCooldownFailSequence() { return cooldownFailSequence; }
+	public void setCooldownFailSequence(long cooldownFailSequence) { this.cooldownFailSequence = cooldownFailSequence; }
 	
 }

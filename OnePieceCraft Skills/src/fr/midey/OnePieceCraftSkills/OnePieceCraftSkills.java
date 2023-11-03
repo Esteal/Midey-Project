@@ -21,11 +21,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.midey.OnePieceCraftSkills.Commands.MasterCommand;
 import fr.midey.OnePieceCraftSkills.Endurance.EnduranceManager;
-import fr.midey.OnePieceCraftSkills.HakiManager.HakiArmement;
 import fr.midey.OnePieceCraftSkills.HakiManager.HakiObservation;
 import fr.midey.OnePieceCraftSkills.HakiManager.HakiOnOff;
-import fr.midey.OnePieceCraftSkills.HakiManager.HakiRoi;
 import fr.midey.OnePieceCraftSkills.LevelManager.LevelSystem;
+import fr.midey.OnePieceCraftSkills.Utils.SequenceManager;
 import fr.midey.OnePieceCraftSkills.Utils.TheTabCompleter;
 import fr.midey.OnePieceCraftSkills.Weapons.CheckSkill;
 import fr.midey.OnePieceCraftSkills.Weapons.SecondSword;
@@ -49,6 +48,7 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
     private List<LivingEntity> entityTouchByWeaponSkill_2;
     private List<Material> airAndFlowers;
 	private EnduranceManager enduranceManager;
+	private SequenceManager sequenceManager;
 	
     /**
      * Called when the plugin is enabled.
@@ -57,17 +57,18 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
     public void onEnable() {
         registerEvents();
         registerCommands();
-        instanciateVar();
+        registerVar();
         for(Player players : Bukkit.getOnlinePlayers()) {
         	LevelSystem.addExperience(players, 0);
         	removeAttackDelay(players);
     	}
     }
 
-	private void instanciateVar() {
+	private void registerVar() {
 		HakiObservation hakiObservation = new HakiObservation(this);
         hakiObservation.HakiObservations();
         this.setEnduranceManager(new EnduranceManager(this));
+        sequenceManager = new SequenceManager(this);
         this.entityTouchByWeaponSkill_1 = new ArrayList<LivingEntity>();
         this.entityTouchByWeaponSkill_2 = new ArrayList<LivingEntity>();
         highSkills = Arrays.asList("demon slash", "flambage shoot");
@@ -109,9 +110,8 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
     private void registerEvents() {
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new LevelSystem(this), this);
-        pm.registerEvents(new HakiArmement(this), this);
+        pm.registerEvents(new SequenceManager(this), this);
         pm.registerEvents(new DamageManager(this), this);
-        pm.registerEvents(new HakiRoi(this), this);
         pm.registerEvents(new CheckSkill(this), this);
         pm.registerEvents(new SecondSword(this), this);
         pm.registerEvents(new PasDeLune(this), this);
@@ -208,15 +208,11 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
 
 	public List<Material> getAirAndFlowers() { return airAndFlowers; }
 
-	public List<String> getLowSkills() {
-		return lowSkills;
-	}
+	public List<String> getLowSkills() { return lowSkills; }
+	public List<String> getHighSkills() { return highSkills; }
+	public List<String> getSwordSkills() { return swordSkills; }
 
-	public List<String> getHighSkills() {
-		return highSkills;
-	}
-
-	public List<String> getSwordSkills() {
-		return swordSkills;
+	public SequenceManager getSequenceManager() {
+		return sequenceManager;
 	}
 }

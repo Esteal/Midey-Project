@@ -1,19 +1,16 @@
 package fr.midey.OnePieceCraftSkills.HakiManager;
 
-import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.midey.OnePieceCraftSkills.OnePieceCraftSkills;
 import fr.midey.OnePieceCraftSkills.PlayerData;
 
-public class HakiArmement implements Listener {
+public class HakiArmement {
 
     private final OnePieceCraftSkills plugin;
 
@@ -27,29 +24,30 @@ public class HakiArmement implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler
     public void onPlayerUseHakiArmement(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         UUID playerId = player.getUniqueId();
+        
+        PlayerData playerData = plugin.getPlayerData(player);
 
-        if (event.getItem() != null && event.getItem().getItemMeta().getDisplayName().equals(ChatColor.LIGHT_PURPLE + "Haki de l'Armement")) {
 
             int hakiPoints = plugin.getHakiPoints(player, "armement");
-            HashMap<UUID, PlayerData> playerDataMap = plugin.getPlayerDataMap();
             
             if (hakiPoints > 0) {
+            	
                 long currentTime = System.currentTimeMillis();
-                long lastUsage = playerDataMap.getOrDefault(playerId, new PlayerData()).getCooldownsHakiArmement();
+                long lastUsage = playerData.getCooldownsHakiArmement();
                 
                 long cooldownDuration = COOLDOWN_LEVELS[hakiPoints - 1];
 
                 if (currentTime - lastUsage < cooldownDuration) {
-                    player.sendMessage(ChatColor.RED + "Haki de l'Armement en cooldown. Attendez quelques instants.");
+                    long tempsRestant = (cooldownDuration - (currentTime - lastUsage))/1000;
+                    player.sendMessage(ChatColor.RED + "Haki de l'Armement en cooldown pour encore : " + (tempsRestant) + "s.");
                     return;
                 }
 
                 player.sendMessage(ChatColor.GREEN + "Haki de l'Armement activé !");
-                playerDataMap.getOrDefault(playerId, new PlayerData()).setCooldownsHakiArmement(currentTime);
+                playerData.setCooldownsHakiArmement(currentTime);
                 plugin.getActiveHakiArmement().add(playerId);
 
                 new BukkitRunnable() {
@@ -62,6 +60,5 @@ public class HakiArmement implements Listener {
             } else {
                 player.sendMessage(ChatColor.RED + "Vous n'avez pas de points de compétence en Haki de l'Armement.");
             }
-        }
     }
 }

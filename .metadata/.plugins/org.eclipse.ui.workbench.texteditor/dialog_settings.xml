@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="enduranceManager"/>
+		<item key="selection" value="setEnduranceManager"/>
 		<list key="findhistory">
+			<item value="clear"/>
+			<item value="setEnduranceManager"/>
 			<item value="plugin.getEnduranceManager()"/>
 			<item value="plugin"/>
 			<item value="dbManager"/>
@@ -21,8 +23,6 @@
 			<item value="create"/>
 			<item value="getTeamBy"/>
 			<item value="team"/>
-			<item value="VTeam"/>
-			<item value="updateDisplay"/>
 		</list>
 		<list key="replacehistory">
 			<item value="enduranceManager"/>

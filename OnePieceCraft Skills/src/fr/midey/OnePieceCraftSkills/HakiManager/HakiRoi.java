@@ -15,8 +15,6 @@ import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -25,7 +23,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import fr.midey.OnePieceCraftSkills.OnePieceCraftSkills;
 import fr.midey.OnePieceCraftSkills.PlayerData;
 
-public class HakiRoi implements Listener {
+public class HakiRoi {
 
     private final OnePieceCraftSkills plugin;
 
@@ -35,11 +33,9 @@ public class HakiRoi implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler
     public void onPlayerUseHakiRoi(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-
-        if (isHakiRoiItem(event)) {
+        
             int hakiPoints = plugin.getHakiPoints(player, "roi");
 
             if (hakiPoints > 0 && isCooldownOver(player)) {
@@ -47,22 +43,20 @@ public class HakiRoi implements Listener {
             } else {
                 informPlayer(player, hakiPoints);
             }
-        }
-    }
-    
-    private boolean isHakiRoiItem(PlayerInteractEvent event) {
-        return event.getItem() != null && event.getItem().getItemMeta().getDisplayName().equals(ChatColor.GOLD + "Haki des Rois");
     }
     
     private boolean isCooldownOver(Player player) {
         long currentTime = System.currentTimeMillis();
-        long lastUsage = plugin.getPlayerDataMap().getOrDefault(player.getUniqueId(), new PlayerData()).getCooldownsHakiRoi();
+        long lastUsage = plugin.getPlayerData(player).getCooldownsHakiRoi();
         return currentTime - lastUsage >= COOLDOWN_ROI;
     }
     
     private void informPlayer(Player player, int hakiPoints) {
+    	
+        long tempsRestant = (COOLDOWN_ROI - (System.currentTimeMillis() - plugin.getPlayerData(player).getCooldownsHakiRoi()))/1000;
+
         String message = hakiPoints > 0
-                ? ChatColor.RED + "Haki des Rois en cooldown. Attendez quelques instants."
+                ? ChatColor.RED + "Haki des Rois en cooldown pendant " + tempsRestant + "s."
                 : ChatColor.RED + "Vous n'avez pas de points de compétence en Haki des Rois.";
         player.sendMessage(message);
     }

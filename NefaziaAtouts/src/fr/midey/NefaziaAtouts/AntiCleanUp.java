@@ -8,13 +8,19 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 public class AntiCleanUp implements Listener {
 
+	private Atouts plugin;
+
+	public AntiCleanUp(Atouts atouts) {
+    	this.plugin = atouts;
+	}
+
 	@EventHandler
     public void onPlayerKill(EntityDeathEvent event) {
         if (event.getEntity() instanceof Player && event.getEntity().getKiller() instanceof Player) {
             Player killed = (Player) event.getEntity();
             Player killer = killed.getKiller();
 
-            if (killer.hasPermission("atouts.anticleanup.enable")) {
+            if (plugin.getPlayerAntiCleanUpEnable().getOrDefault(killer.getUniqueId(), false)) {
                 killer.setHealth(killer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
             }
         }

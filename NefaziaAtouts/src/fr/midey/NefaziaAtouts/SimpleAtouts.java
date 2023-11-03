@@ -9,7 +9,13 @@ import org.bukkit.potion.PotionEffectType;
 
 public class SimpleAtouts implements CommandExecutor {
 	
-	 @Override
+	 private Atouts plugin;
+
+	public SimpleAtouts(Atouts atouts) {
+		 this.plugin = atouts;
+	 }
+
+	@Override
 	    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 	        if (cmd.getName().equalsIgnoreCase("atouts") && sender instanceof Player) {
 	            Player player = (Player) sender;
@@ -34,6 +40,17 @@ public class SimpleAtouts implements CommandExecutor {
 	                    	if (player.hasPermission("atouts.fireres.enable"))
 	                    		player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, Integer.MAX_VALUE, 0, false, false));
 	                        break;
+	                    case "nofall":
+	                    	if (player.hasPermission("atouts.nofall.enable"))
+	                    		plugin.getPlayerNoFallEnable().put(player.getUniqueId(), true);
+	                    	break;
+	                    case "norod":
+	                    	if (player.hasPermission("atouts.norod.disable"))
+	                    		plugin.getPlayerNoRodEnable().put(player.getUniqueId(), false);
+	                    	break;
+	                    case "anticleanup":
+	                    	if (player.hasPermission("atouts.anticleanup.disable"))
+	                    		plugin.getPlayerAntiCleanUpEnable().put(player.getUniqueId(), false);
 	                    default:
 	                    	break;
 	                }
@@ -51,6 +68,18 @@ public class SimpleAtouts implements CommandExecutor {
 	                    	if (player.hasPermission("atouts.fireres.disable"))
 	                    		player.removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
 	                        break;
+	                    case "nofall":
+	                    	if (player.hasPermission("atouts.nofall.disable"))
+	                    		plugin.getPlayerNoFallEnable().put(player.getUniqueId(), false);
+	                    	break;
+	                    case "norod":
+	                    	if (player.hasPermission("atouts.norod.disable"))
+	                    		plugin.getPlayerNoRodEnable().put(player.getUniqueId(), false);
+	                    	break;
+	                    case "anticleanup":
+	                    	if (player.hasPermission("atouts.anticleanup.disable"))
+	                    		plugin.getPlayerAntiCleanUpEnable().put(player.getUniqueId(), false);
+	                    	break;
 	                    default:
 	                    	break;
 	                }
