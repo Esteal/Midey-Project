@@ -73,10 +73,10 @@ public class LevelCommands {
             case "weapon":
             	if (args[0].equalsIgnoreCase("give")) {
                     try {
-                        int weaponPoints = Integer.parseInt(args[3]);
-                        int currentWeaponPoints = playerDataMap.getOrDefault(uuid, new PlayerData()).getWeaponPoints();
-                        playerDataMap.getOrDefault(uuid, new PlayerData()).setWeaponPoints(Math.min(3, currentWeaponPoints + weaponPoints));
-                        sender.sendMessage("Vous avez donné " + weaponPoints + " points de maniement du sabre à " + target.getName() + ".");
+                        //int weaponPoints = Integer.parseInt(args[3]);
+                        //int currentWeaponPoints = playerDataMap.getOrDefault(uuid, new PlayerData()).getWeaponPoints();
+                        //playerDataMap.getOrDefault(uuid, new PlayerData()).setWeaponPoints(Math.min(3, currentWeaponPoints + weaponPoints));
+                        //sender.sendMessage("Vous avez donné " + weaponPoints + " points de maniement du sabre à " + target.getName() + ".");
                     } catch (NumberFormatException e) {
                         sender.sendMessage("Veuillez entrer un nombre valide de points de maniement du sabre !");
                     }

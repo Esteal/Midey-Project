@@ -15,7 +15,6 @@ import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -33,8 +32,7 @@ public class HakiRoi {
         this.plugin = plugin;
     }
 
-    public void onPlayerUseHakiRoi(PlayerInteractEvent event) {
-        Player player = event.getPlayer();
+    public void onPlayerUseHakiRoi(Player player) {
         
             int hakiPoints = plugin.getHakiPoints(player, "roi");
 

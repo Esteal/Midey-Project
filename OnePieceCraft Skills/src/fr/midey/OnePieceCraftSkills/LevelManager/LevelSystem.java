@@ -1,5 +1,6 @@
 package fr.midey.OnePieceCraftSkills.LevelManager;
 
+import java.util.Random;
 import java.util.UUID;
 
 import org.bukkit.ChatColor;
@@ -13,6 +14,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 import fr.midey.OnePieceCraftSkills.OnePieceCraftSkills;
 import fr.midey.OnePieceCraftSkills.PlayerData;
+import fr.midey.OnePieceCraftSkills.Utils.ChanceToUpgradeSkill;
 
 public class LevelSystem implements Listener {
 
@@ -51,6 +53,15 @@ public class LevelSystem implements Listener {
         int currentExp = playerExperience;
         int currentSkillPoints = playerSkillPoints;
         
+        if(ChanceToUpgradeSkill.chanceToUpgradeSkill(5)) //Ici upgrade l'endurance
+        {
+            Random random = new Random();
+            int rdm = (random.nextInt(3) + 1);
+        	playerData.setEnduranceMax(playerData.getEnduranceMax() + rdm);
+            player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
+        	player.sendMessage(ChatColor.GREEN + "âž¤ " + ChatColor.GRAY + "+" +  rdm + " d'endurance");
+        }
+        
         if (currentLevel < 10) {
             int expToNextLevel = playerData.getExperienceToNextLevel();
             currentExp += exp;
@@ -60,11 +71,15 @@ public class LevelSystem implements Listener {
                 currentExp -= expToNextLevel;
                 expToNextLevel = (int) (1000 * Math.pow(1.7, currentLevel - 1));
 
-                currentSkillPoints++;  // Ajout d'un point de compétence à chaque montée de niveau
-
-                player.sendMessage(ChatColor.GREEN + "Félicitations ! Vous êtes maintenant niveau " + currentLevel);
-                player.sendMessage(ChatColor.GREEN + "Vous avez gagné un point de compétence ! "
-                								   + "\nPoints de compétence actuels : " + currentSkillPoints);
+                currentSkillPoints++;  // Ajout d'un point de compÃ©tence Ã  chaque montÃ©e de niveau
+                
+                int rdm = 10;
+            	playerData.setEnduranceMax(playerData.getEnduranceMax() + rdm);
+                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
+                
+                player.sendMessage(ChatColor.GREEN + "âž¤ " + ChatColor.GRAY + "Vous Ãªtes maintenant niveau " + ChatColor.GOLD + currentLevel);
+            	player.sendMessage(ChatColor.GREEN + "âž¤ " + ChatColor.GRAY + "+1 point de compÃ©tence");
+            	player.sendMessage(ChatColor.GREEN + "âž¤ " + ChatColor.GRAY + "+" +  rdm + " d'endurance");
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
             }
             
@@ -74,7 +89,7 @@ public class LevelSystem implements Listener {
             playerData.setSkillPoints(currentSkillPoints);
 
         } else {
-            // Le joueur ne peut plus monter de niveau, mais peut encore gagner de l'expérience
+            // Le joueur ne peut plus monter de niveau, mais peut encore gagner de l'expÃ©rience
             currentExp += exp;
             playerData.setExperience(currentExp);
             playerData.setExperienceToNextLevel(-1);

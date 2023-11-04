@@ -34,29 +34,19 @@ public class ViewCommands {
         if ("view".equalsIgnoreCase(args[0]) && "points".equalsIgnoreCase(args[1])) {
         	PlayerData playerData = plugin.getPlayerData(target);
         	
-            int observationPoints = plugin.getHakiPoints(target, "observation");
-            int armementPoints = plugin.getHakiPoints(target, "armement");
-            int roiPoints = plugin.getHakiPoints(target, "roi");
             int skillPoints = playerData.getSkillPoints();
             int level = playerData.getLevel();
-            int weaponPoints = playerData.getWeaponPoints();
             int experience = playerData.getExperience();
             int experienceToNextLevel = playerData.getExperienceToNextLevel();
-            String lowSkill = playerData.getWeaponSkillLow();
-            String highSkil = playerData.getWeaponSkillHigh();
+            double endurance = playerData.getEnduranceMax();
             
             sender.sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━ " + ChatColor.AQUA + "Informations de " + playerName + ChatColor.GOLD + " ━━━━━━━━━━━━━━━");
             sender.sendMessage(ChatColor.GREEN + "➤ " + ChatColor.YELLOW + "Niveau: " + ChatColor.WHITE + level);
             sender.sendMessage(ChatColor.GREEN + "➤ " + ChatColor.YELLOW + "Expérience : " + ChatColor.WHITE + experience + "/" + experienceToNextLevel);
+            sender.sendMessage(ChatColor.GREEN + "➤ " + ChatColor.YELLOW + "Endurance : " + ChatColor.WHITE + String.format("%.0f", endurance));
             sender.sendMessage(ChatColor.GREEN + "➤ " + ChatColor.YELLOW + "Points de compétences disponible : " + ChatColor.WHITE + skillPoints);
-            sender.sendMessage(ChatColor.GOLD + "━━━ " + ChatColor.AQUA + "Haki" + ChatColor.GOLD + " ━━━");
-            sender.sendMessage(ChatColor.GREEN + "➤ " + ChatColor.YELLOW + "Observation: " + ChatColor.WHITE + observationPoints);
-            sender.sendMessage(ChatColor.GREEN + "➤ " + ChatColor.YELLOW + "Armement: " + ChatColor.WHITE + armementPoints);
-            sender.sendMessage(ChatColor.GREEN + "➤ " + ChatColor.YELLOW + "Roi: " + ChatColor.WHITE + roiPoints);
-            sender.sendMessage(ChatColor.GOLD + "━━━ " + ChatColor.AQUA + "Maniement du sabre" + ChatColor.GOLD + " ━━━");
-            sender.sendMessage(ChatColor.GREEN + "➤ " + ChatColor.YELLOW + "Niveau : " + ChatColor.WHITE + weaponPoints);
-            sender.sendMessage(ChatColor.GREEN + "➤ " + ChatColor.YELLOW + "Technique de bas rang : " + ChatColor.WHITE + lowSkill);
-            sender.sendMessage(ChatColor.GREEN + "➤ " + ChatColor.YELLOW + "Technique de haut rang : " + ChatColor.WHITE + highSkil);
+            sender.sendMessage(ChatColor.GOLD + "━━━ " + ChatColor.AQUA + "Compétences" + ChatColor.GOLD + " ━━━");
+            displaySkills(target, playerData);
             sender.sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
             return true;
@@ -66,5 +56,22 @@ public class ViewCommands {
         }
     }
     
-    
+    public static void displaySkills(Player player, PlayerData playerData) {
+        displaySkill(player, "Demon Slash", playerData.getDemonSlashLevel(), playerData.getChanceToDemonSlashLevelUp());
+        displaySkill(player, "Slash", playerData.getSlashLevel(), playerData.getChanceToSlashLevelUp());
+        displaySkill(player, "Incision", playerData.getIncisionLevel(), playerData.getChanceToIncisionLevelUp());
+        displaySkill(player, "Pas de lune", playerData.getPasDeluneLevel(), playerData.getChanceToPasDeluneLevelUp());
+        displaySkill(player, "Flambage Shoot", playerData.getFlambageShootLevel(), playerData.getChanceToFlambageShootLevelUp());
+        displaySkill(player, "Haki des Rois", playerData.getHakiDesRoisLevel(), playerData.getChanceToHakiDesRoisLevelUp());
+        displaySkill(player, "Haki de l'Armement", playerData.getHakiArmementLevel(), playerData.getChanceToHakiArmementLevelUp());
+        displaySkill(player, "Haki de l'observation", playerData.getHakiObservationLevel(), playerData.getChanceToHakiObservationLevelUp());
+    }
+
+    private static void displaySkill(Player player, String skillName, int level, double chanceToLevelUp) {
+        if (level != 0) {
+            String message = ChatColor.GREEN + "➤ " + ChatColor.YELLOW + skillName + " : " + ChatColor.WHITE + level
+                    + ChatColor.GRAY + " (" + String.format("%.2f", chanceToLevelUp) + "%)";
+            player.sendMessage(message);
+        }
+    }
 }

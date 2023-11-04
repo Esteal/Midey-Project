@@ -8,7 +8,9 @@ import org.bukkit.command.CommandSender;
 import fr.midey.OnePieceCraftSkills.OnePieceCraftSkills;
 import fr.midey.OnePieceCraftSkills.HakiManager.HakiCommands;
 import fr.midey.OnePieceCraftSkills.LevelManager.LevelCommands;
-import fr.midey.OnePieceCraftSkills.Weapons.WeaponCommands;
+import fr.midey.OnePieceCraftSkills.Skills.AddSkillPoints;
+import fr.midey.OnePieceCraftSkills.Skills.UtilsSkill.AddSkillExp;
+import fr.midey.OnePieceCraftSkills.Skills.UtilsSkill.SkillCommandExecutor;
 
 public class MasterCommand implements CommandExecutor {
 
@@ -38,8 +40,17 @@ public class MasterCommand implements CommandExecutor {
                 ViewCommands.onCommand(sender, command, label, args, plugin);
                 break;
             case "weaponskill":
-                WeaponCommands.onCommand(sender, command, label, args, plugin);
+                //WeaponCommands.onCommand(sender, command, label, args, plugin);
                 break;
+            case "setskill":
+            	new SkillCommandExecutor().onCommand(sender, command, label, args, plugin);
+            	break;
+            case "addskillpoints" :
+            	new AddSkillPoints().onCommand(sender, command, label, args, plugin);
+            	break;
+            case "addskillexp" :
+            	new AddSkillExp().onCommand(sender, command, label, args, plugin);
+            	break;
             default:
                 sender.sendMessage(ChatColor.RED + "Sous-commande inconnue: " + ChatColor.YELLOW + subCommand);
                 return false;
@@ -58,6 +69,8 @@ public class MasterCommand implements CommandExecutor {
         sender.sendMessage(ChatColor.YELLOW + "/opc give haki <armement|roi|observation> <Pseudo> <quantités>" + ChatColor.GRAY + " - Donne des points de haki.");
         sender.sendMessage(ChatColor.YELLOW + "/opc view points <Pseudo>" + ChatColor.GRAY + " - Visualise les points d’un joueur.");
         sender.sendMessage(ChatColor.YELLOW + "/opc weaponskill <low|high> <Pseudo> <technique>" + ChatColor.GRAY + " - Attribue des points de maîtrise d'arme.");
+        sender.sendMessage(ChatColor.YELLOW + "/opc setSkill <séquence> <technique> <Pseudo>" + ChatColor.GRAY + " - Lie une compétence à une séquence de clic.");
+        sender.sendMessage(ChatColor.YELLOW + "/opc addSkillPoints <quantité> <technique> <Pseudo>" + ChatColor.GRAY + " - permet de modifier le niveau d'une compétence");
     }
 
     private void handleGiveCommand(CommandSender sender, Command command, String label, String[] args) {

@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="setEnduranceManager"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="weaponPoints"/>
 			<item value="clear"/>
 			<item value="setEnduranceManager"/>
 			<item value="plugin.getEnduranceManager()"/>
@@ -22,7 +23,6 @@
 			<item value="RawTeam"/>
 			<item value="create"/>
 			<item value="getTeamBy"/>
-			<item value="team"/>
 		</list>
 		<list key="replacehistory">
 			<item value="enduranceManager"/>

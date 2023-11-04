@@ -4,7 +4,6 @@ import java.util.UUID;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.midey.OnePieceCraftSkills.OnePieceCraftSkills;
@@ -24,8 +23,7 @@ public class HakiArmement {
         this.plugin = plugin;
     }
 
-    public void onPlayerUseHakiArmement(PlayerInteractEvent event) {
-        Player player = event.getPlayer();
+    public void onPlayerUseHakiArmement(Player player) {
         UUID playerId = player.getUniqueId();
         
         PlayerData playerData = plugin.getPlayerData(player);

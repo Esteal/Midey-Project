@@ -24,12 +24,12 @@ import fr.midey.OnePieceCraftSkills.Endurance.EnduranceManager;
 import fr.midey.OnePieceCraftSkills.HakiManager.HakiObservation;
 import fr.midey.OnePieceCraftSkills.HakiManager.HakiOnOff;
 import fr.midey.OnePieceCraftSkills.LevelManager.LevelSystem;
+import fr.midey.OnePieceCraftSkills.Skills.SecondSword;
+import fr.midey.OnePieceCraftSkills.Skills.SkillHighRank.DemonSlash;
+import fr.midey.OnePieceCraftSkills.Skills.SkillLowRank.PasDeLune;
+import fr.midey.OnePieceCraftSkills.Skills.UtilsSkill.CheckSkill;
 import fr.midey.OnePieceCraftSkills.Utils.SequenceManager;
 import fr.midey.OnePieceCraftSkills.Utils.TheTabCompleter;
-import fr.midey.OnePieceCraftSkills.Weapons.CheckSkill;
-import fr.midey.OnePieceCraftSkills.Weapons.SecondSword;
-import fr.midey.OnePieceCraftSkills.Weapons.SkillHighRank.DemonSlash;
-import fr.midey.OnePieceCraftSkills.Weapons.SkillLowRank.PasDeLune;
 
 /**
  * Main class of the OnePieceCraftSkills plugin.
@@ -43,10 +43,12 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
 	private List<String> lowSkills;
 	private List<String> swordSkills;
 	private List<String> highSkills;
+    private List<String> allSkills;
     private List<Material> tools;
     private List<LivingEntity> entityTouchByWeaponSkill_1;
     private List<LivingEntity> entityTouchByWeaponSkill_2;
     private List<Material> airAndFlowers;
+	private List<String> sequencesPossible;
 	private EnduranceManager enduranceManager;
 	private SequenceManager sequenceManager;
 	
@@ -59,7 +61,8 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
         registerCommands();
         registerVar();
         for(Player players : Bukkit.getOnlinePlayers()) {
-        	LevelSystem.addExperience(players, 0);
+        	if(!playerDataMap.containsKey(players.getUniqueId()))
+        		playerDataMap.put(players.getUniqueId(), new PlayerData());
         	removeAttackDelay(players);
     	}
     }
@@ -74,6 +77,10 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
         highSkills = Arrays.asList("demon slash", "flambage shoot");
         lowSkills = Arrays.asList("slash", "pas de lune", "incision");
         swordSkills = Arrays.asList("slash", "demon slash");
+        allSkills = new ArrayList<> (highSkills);
+        allSkills.addAll(lowSkills);
+        allSkills.add("Haki des rois");
+        allSkills.add("Haki de l'armement");
         this.airAndFlowers = Arrays.asList(
         	    Material.AIR,  Material.CAVE_AIR,  Material.VOID_AIR, Material.DANDELION,
         	    Material.POPPY, Material.BLUE_ORCHID, Material.ALLIUM, Material.AZURE_BLUET,
@@ -83,7 +90,7 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
         	    Material.GRASS ,Material.TALL_GRASS, Material.FERN, Material.LARGE_FERN, 
         	    Material.VINE, Material.SEAGRASS, Material.TALL_SEAGRASS, Material.KELP, 
         	    Material.KELP_PLANT, Material.MOSS_CARPET, Material.MOSS_BLOCK, Material.DEAD_BUSH,
-        	    Material.BAMBOO, Material.BAMBOO_SAPLING
+        	    Material.BAMBOO, Material.BAMBOO_SAPLING, Material.WATER
         	);
         this.tools = Arrays.asList(
         	    // Épées
@@ -102,6 +109,8 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
         	    Material.DIAMOND_HOE, Material.GOLDEN_HOE, Material.IRON_HOE,
         	    Material.NETHERITE_HOE, Material.STONE_HOE, Material.WOODEN_HOE
         	);
+        this.sequencesPossible = Arrays.asList("DGGDG", "DGDGG", "DDDDG", "DDGGG", 
+        									   "DDGDG", "DDDGG", "DGDDG", "DGGGG");
 	}
 
 	/**
@@ -142,16 +151,16 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
         int currentPoints;
         switch(hakiType.toLowerCase()) {
             case "observation":
-                currentPoints = data.getHakiObservation();
-                data.setHakiObservation(Math.min(3, currentPoints + points));
+                currentPoints = data.getHakiObservationLevel();
+                data.setHakiObservationLevel(Math.min(3, currentPoints + points));
                 break;
             case "armement":
-                currentPoints = data.getHakiArmement();
-                data.setHakiArmement(Math.min(3, currentPoints + points));
+                currentPoints = data.getHakiArmementLevel();
+                data.setHakiArmementLevel(Math.min(3, currentPoints + points));
                 break;
             case "roi":
-                currentPoints = data.getHakiRoi();
-                data.setHakiRoi(Math.min(3, currentPoints + points));
+                currentPoints = data.getHakiDesRoisLevel();
+                data.setHakiDesRoisLevel(Math.min(3, currentPoints + points));
                 break;
             default:
                 throw new IllegalArgumentException("Type de Haki inconnu: " + hakiType);
@@ -170,18 +179,23 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
         PlayerData data = playerDataMap.getOrDefault(player.getUniqueId(), new PlayerData());
         switch(hakiType.toLowerCase()) {
             case "observation":
-                return data.getHakiObservation();
+                return data.getHakiObservationLevel();
             case "armement":
-                return data.getHakiArmement();
+                return data.getHakiArmementLevel();
             case "roi":
-                return data.getHakiRoi();
+                return data.getHakiDesRoisLevel();
             default:
                 throw new IllegalArgumentException("Type de Haki inconnu: " + hakiType);
         }
     }
     
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) { removeAttackDelay(event.getPlayer()); }
+    public void onPlayerJoin(PlayerJoinEvent event) {
+    	Player players = event.getPlayer();
+    	if(!playerDataMap.containsKey(players.getUniqueId()))
+    		playerDataMap.put(players.getUniqueId(), new PlayerData());
+    	removeAttackDelay(event.getPlayer()); 
+    }
     
     //Permet d'enlever le délai entre les coups
     public void removeAttackDelay(Player player) {
@@ -212,7 +226,13 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
 	public List<String> getHighSkills() { return highSkills; }
 	public List<String> getSwordSkills() { return swordSkills; }
 
-	public SequenceManager getSequenceManager() {
-		return sequenceManager;
+	public SequenceManager getSequenceManager() { return sequenceManager; }
+
+	public List<String> getSequencesPossible() {
+		return sequencesPossible;
+	}
+
+	public List<String> getAllSkills() {
+		return allSkills;
 	}
 }
