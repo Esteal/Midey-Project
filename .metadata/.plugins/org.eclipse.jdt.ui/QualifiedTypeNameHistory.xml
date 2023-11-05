@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="fr.midey.onepiececraft.OnePieceCraft"/>
-    <fullyQualifiedTypeName name="fr.midey.OnePieceCraftSkills.LevelManager.LevelCommands"/>
     <fullyQualifiedTypeName name="fr.midey.OnePieceCraftSkills.HakiManager.HakiCommands"/>
     <fullyQualifiedTypeName name="fr.midey.OnePieceCraftSkills.Commands.ViewCommands"/>
     <fullyQualifiedTypeName name="fr.midey.OnePieceCraftSkills.Commands.MasterCommand"/>
@@ -41,7 +39,6 @@
     <fullyQualifiedTypeName name="org.bukkit.World"/>
     <fullyQualifiedTypeName name="org.bukkit.Particle"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
-    <fullyQualifiedTypeName name="org.bukkit.event.Listener"/>
     <fullyQualifiedTypeName name="org.bukkit.event.EventHandler"/>
     <fullyQualifiedTypeName name="fr.midey.OnePieceCraftSkills.Utils.SequenceManager"/>
     <fullyQualifiedTypeName name="net.md_5.bungee.api.ChatColor"/>
@@ -58,6 +55,9 @@
     <fullyQualifiedTypeName name="org.bukkit.Location"/>
     <fullyQualifiedTypeName name="org.bukkit.Sound"/>
     <fullyQualifiedTypeName name="fr.midey.OnePieceCraftSkills.Utils.ChanceToUpgradeSkill"/>
-    <fullyQualifiedTypeName name="org.bukkit.ChatColor"/>
     <fullyQualifiedTypeName name="fr.midey.OnePieceCraftSkills.PlayerData"/>
+    <fullyQualifiedTypeName name="org.bukkit.ChatColor"/>
+    <fullyQualifiedTypeName name="java.util.Comparator"/>
+    <fullyQualifiedTypeName name="org.bukkit.event.Listener"/>
+    <fullyQualifiedTypeName name="fr.midey.OnePieceCraftSkills.Commands.InfoOnSkills"/>
 </qualifiedTypeNameHistroy>

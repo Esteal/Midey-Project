@@ -24,12 +24,12 @@ public class HakiArmement {
     }
 
     public void onPlayerUseHakiArmement(Player player) {
+    	
         UUID playerId = player.getUniqueId();
-        
         PlayerData playerData = plugin.getPlayerData(player);
 
 
-            int hakiPoints = plugin.getHakiPoints(player, "armement");
+            int hakiPoints = playerData.getHakiArmementLevel();;
             
             if (hakiPoints > 0) {
             	

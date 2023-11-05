@@ -34,7 +34,7 @@ public class HakiRoi {
 
     public void onPlayerUseHakiRoi(Player player) {
         
-            int hakiPoints = plugin.getHakiPoints(player, "roi");
+            int hakiPoints = plugin.getPlayerData(player).getHakiDesRoisLevel();
 
             if (hakiPoints > 0 && isCooldownOver(player)) {
                 activateHakiRoi(player, hakiPoints);

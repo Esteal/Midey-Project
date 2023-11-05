@@ -19,9 +19,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.midey.OnePieceCraftSkills.Commands.InfoOnSkills;
 import fr.midey.OnePieceCraftSkills.Commands.MasterCommand;
 import fr.midey.OnePieceCraftSkills.Endurance.EnduranceManager;
-import fr.midey.OnePieceCraftSkills.HakiManager.HakiObservation;
 import fr.midey.OnePieceCraftSkills.HakiManager.HakiOnOff;
 import fr.midey.OnePieceCraftSkills.LevelManager.LevelSystem;
 import fr.midey.OnePieceCraftSkills.Skills.SecondSword;
@@ -68,8 +68,6 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
     }
 
 	private void registerVar() {
-		HakiObservation hakiObservation = new HakiObservation(this);
-        hakiObservation.HakiObservations();
         this.setEnduranceManager(new EnduranceManager(this));
         sequenceManager = new SequenceManager(this);
         this.entityTouchByWeaponSkill_1 = new ArrayList<LivingEntity>();
@@ -81,6 +79,7 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
         allSkills.addAll(lowSkills);
         allSkills.add("Haki des rois");
         allSkills.add("Haki de l'armement");
+        allSkills.add("Haki de l'observation");
         this.airAndFlowers = Arrays.asList(
         	    Material.AIR,  Material.CAVE_AIR,  Material.VOID_AIR, Material.DANDELION,
         	    Material.POPPY, Material.BLUE_ORCHID, Material.ALLIUM, Material.AZURE_BLUET,
@@ -125,6 +124,7 @@ public class OnePieceCraftSkills extends JavaPlugin implements Listener {
         pm.registerEvents(new SecondSword(this), this);
         pm.registerEvents(new PasDeLune(this), this);
         pm.registerEvents(new DemonSlash(this, new CheckSkill(this)), this);
+        pm.registerEvents(new InfoOnSkills(), this);
         pm.registerEvents(this, this);
     }
 

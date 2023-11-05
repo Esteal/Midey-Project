@@ -51,6 +51,8 @@ public class MasterCommand implements CommandExecutor {
             case "addskillexp" :
             	new AddSkillExp().onCommand(sender, command, label, args, plugin);
             	break;
+            case "skills" :
+            	new InfoOnSkills().onCommand(sender, command, label, args, plugin);
             default:
                 sender.sendMessage(ChatColor.RED + "Sous-commande inconnue: " + ChatColor.YELLOW + subCommand);
                 return false;

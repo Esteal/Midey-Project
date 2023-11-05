@@ -14,12 +14,14 @@ import fr.midey.OnePieceCraftSkills.OnePieceCraftSkills;
 import fr.midey.OnePieceCraftSkills.PlayerData;
 import fr.midey.OnePieceCraftSkills.Endurance.EnduranceManager;
 import fr.midey.OnePieceCraftSkills.HakiManager.HakiArmement;
+import fr.midey.OnePieceCraftSkills.HakiManager.HakiObservation;
 import fr.midey.OnePieceCraftSkills.HakiManager.HakiRoi;
 import fr.midey.OnePieceCraftSkills.Skills.SkillHighRank.DemonSlash;
 import fr.midey.OnePieceCraftSkills.Skills.SkillHighRank.FlambageShoot;
 import fr.midey.OnePieceCraftSkills.Skills.SkillLowRank.Incision;
 import fr.midey.OnePieceCraftSkills.Skills.SkillLowRank.Slash;
 import fr.midey.OnePieceCraftSkills.Skills.UtilsSkill.CheckSkill;
+import fr.midey.OnePieceCraftSkills.Skills.UtilsSkill.SkillLevelUpManager;
 import net.md_5.bungee.api.ChatColor;
 
 public class SequenceManager implements Listener {
@@ -27,11 +29,12 @@ public class SequenceManager implements Listener {
 	private OnePieceCraftSkills plugin;
 	
     private int demonSlashCost = 65, demonSlashSurchauffe = 45; // Cout : 65 | surchauffe si moins de 45 d'endurance
-    private int slashCost = 30, slashSurchauffe = 15; // Cout : 65 | surchauffe si moins de 15 d'endurance
+    private int slashCost = 30, slashSurchauffe = 15; // Cout : 30 | surchauffe si moins de 15 d'endurance
     private int flambageShotCost = 65, flambageShotSurchauffe = 45; // Cout : 65 | surchauffe si moins de 45 d'endurance
-    private int incisionCost = 40, incisionShotSurchauffe = 20; // Cout : 65 | surchauffe si moins de 45 d'endurance
-    private int hakiRoiCost = 90, hakiRoiSurchauffe = 90; // Cout : 65 | surchauffe si moins de 45 d'endurance
-    private int hakiArmementCost = 20, hakiArmementSurchauffe = 10; // Cout : 65 | surchauffe si moins de 45 d'endurance
+    private int incisionCost = 40, incisionShotSurchauffe = 20; // Cout : 40 | surchauffe si moins de 20 d'endurance
+    private int hakiRoiCost = 90, hakiRoiSurchauffe = 90; // Cout : 90 | surchauffe si moins de 100 d'endurance
+    private int hakiArmementCost = 20, hakiArmementSurchauffe = 10; // Cout : 20 | surchauffe si moins de 10 d'endurance
+    private int hakiObservationCost = 35, hakiObservationSurchauffe = 10; // Cout : 35 | surchauffe si moins de 10 d'endurance
 
     public SequenceManager(OnePieceCraftSkills plugin) {
 		this.plugin = plugin;
@@ -102,6 +105,10 @@ public class SequenceManager implements Listener {
 	            return generateSkillConsumer(plugin, player, hakiRoiSurchauffe, hakiRoiCost,
 	                (p) -> new HakiRoi(plugin).onPlayerUseHakiRoi(p),
 	                levelUpManager::handleHakiDesRoisLevelUp);
+	        case "Haki de l'observation":
+	            return generateSkillConsumer(plugin, player, hakiObservationSurchauffe, hakiObservationCost,
+	                (p) -> new HakiObservation(plugin).hakiObservation(p),
+	                levelUpManager::handleHakiObservationLevelUp);
 	        case "Haki de l'armement":
 	            return generateSkillConsumer(plugin, player, hakiArmementSurchauffe, hakiArmementCost,
 	                (p) -> new HakiArmement(plugin).onPlayerUseHakiArmement(p),
