@@ -27,7 +27,7 @@ public class EnduranceManager {
                     double endurance = playerData.getEndurance();
                     double enduranceMax = playerData.getEnduranceMax();
                     if (endurance < enduranceMax) {
-                        endurance += 0.25;
+                        endurance += 25;
                         if (endurance > enduranceMax) {
                             endurance = enduranceMax;
                         }

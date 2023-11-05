@@ -1,8 +1,10 @@
 package fr.midey.OnePieceCraftSkills.Skills.SkillHighRank;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
@@ -25,6 +27,7 @@ public class FlambageShoot {
 		
 		double distance = 2.4;
 		if(player.isSprinting()) distance = 3.5;
+		doSouffleArdent(player);
 		Location playerLocation = player.getLocation();
 		playerLocation.setPitch(0);
 		Vector playerDirection = playerLocation.getDirection();
@@ -51,6 +54,48 @@ public class FlambageShoot {
 				y+=0.6;
 			}
 		}.runTaskTimer(plugin, 0, 0);
+	}
+
+	public void doSouffleArdent(Player player) {
+	    // Définition de la durée de vie de l'ArmorStand.
+	    int durationInSeconds = 10;
+	    // Distance maximale que le rayon peut parcourir.
+	    int range = 10;
+	    
+	    // Création d'une tâche récurrente qui s'exécutera toutes les ticks (20 ticks = 1 seconde).
+	    new BukkitRunnable() {
+	        int ticksLived = 0; // Compteur de ticks pour le despawn
+
+			public void run() {
+	            // Si la durée de vie a expiré, annuler cette tâche et sortir.
+	            if (ticksLived >= durationInSeconds * 20) {
+	                this.cancel();
+	                return;
+	            }
+	            
+	            // Calcul de la position de départ en face du joueur.
+	            Location startLocation = player.getLocation();
+	            Vector direction = startLocation.getDirection();
+	            
+	            // Créer une ligne d'ArmorStands en utilisant la direction du regard.
+	            for (int i = 0; i < range; i++) {
+	                Location currentLocation = startLocation.clone().add(direction.clone().multiply(i));
+	                // Vérifier si l'ArmorStand est dans un bloc solide, si oui, le break.
+	                
+	                ArmorStand armorStand = player.getWorld().spawn(currentLocation, ArmorStand.class);
+	                armorStand.setGravity(false); // Empêcher l'ArmorStand de tomber.
+
+	                // Appel de la fonction de vérification des dégâts (à implémenter).
+	                // checkDamageToEntities(armorStand, player);
+	                
+	                // Supprimer l'ArmorStand après 1 tick.
+	                Bukkit.getScheduler().runTaskLater(plugin, armorStand::remove, 5L);
+	            }
+	            
+	            // Incrémenter le compteur de ticks.
+	            ticksLived++;
+	        }
+	    }.runTaskTimer(plugin, 0, 5L); // Commence immédiatement, se répète toutes les ticks.
 	}
 
 }
