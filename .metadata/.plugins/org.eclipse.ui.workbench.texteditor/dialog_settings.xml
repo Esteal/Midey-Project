@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="plugin"/>
 		<list key="findhistory">
+			<item value="yourPluginInstance"/>
 			<item value="weaponPoints"/>
 			<item value="clear"/>
 			<item value="setEnduranceManager"/>
@@ -22,9 +23,9 @@
 			<item value="reic"/>
 			<item value="RawTeam"/>
 			<item value="create"/>
-			<item value="getTeamBy"/>
 		</list>
 		<list key="replacehistory">
+			<item value="plugin"/>
 			<item value="enduranceManager"/>
 			<item value="centerLocation"/>
 			<item value="crystalGreen"/>
