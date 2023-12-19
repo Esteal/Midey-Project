@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="LgUHC"/>
 			<item value="NefaziaAtouts"/>
 			<item value="OnePieceCraft"/>
 			<item value="WorldManager"/>
@@ -15,6 +16,7 @@
 			<item value="MagicUHC"/>
 		</list>
 		<list key="artifactId">
+			<item value="LgUHC"/>
 			<item value="NefaziaAtouts"/>
 			<item value="OnePieceCraft"/>
 			<item value="WorldManager"/>
